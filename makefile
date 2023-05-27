@@ -9,7 +9,7 @@ LFLAGS = -Wall -Wextra -fsanitize=address -fsanitize=undefined -fsanitize=leak
 SRC_DIR = src
 BUILD_DIR = build
 
-TARGET = a.out
+TARGET = futballFantasy.out
 
 SRC_FILES = $(wildcard $(SRC_DIR)/*.cpp)
 OBJ_FILES = $(addprefix $(BUILD_DIR)/, $(notdir $(SRC_FILES:.cpp=.o)))
