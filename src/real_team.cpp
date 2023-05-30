@@ -7,3 +7,7 @@ RealTeam::RealTeam(string _name){
 void RealTeam::pushPlayer(Player *p){
     players.push_back(p);
 }
+
+RealTeam::~RealTeam(){
+
+}

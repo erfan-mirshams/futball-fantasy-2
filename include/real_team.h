@@ -8,6 +8,7 @@ class RealTeam{
 public:
     RealTeam(string _name);
     void pushPlayer(Player* p);
+    virtual ~RealTeam();
 private:
     string name;
     vector<Player*> players;
