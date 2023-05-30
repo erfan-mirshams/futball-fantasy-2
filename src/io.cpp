@@ -62,3 +62,16 @@ vector<string> splitIntoWords(string str){
     }
     return elements;
 }
+
+int CSVFilesInDirCount(string path){
+    int count = 0;
+    DIR* dir = opendir(path.c_str());
+    dirent* entry;
+    while ((entry = readdir(dir)) != nullptr){
+        if (entry->d_type == DT_REG && strstr(entry->d_name, CSV_EXT.c_str()) != nullptr){
+            count++;
+        }
+    }
+    closedir(dir);
+    return count;
+}
