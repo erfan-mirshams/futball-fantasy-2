@@ -37,7 +37,7 @@ void System::readPremierLeagueInfo() {
 void System::readWeeksInfo() {
   int weekCnt = CSVFilesInDirCount(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM);
   cerr << "CNT: " << weekCnt << endl;
-  for (size_t i = 1; i <= weekCnt; i++) {
+  for (int i = 1; i <= weekCnt; i++) {
     vector<vector<string>> weekContent;
     cerr << ": " << DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP + NAME_DELIM + to_string(i) + CSV_EXT << endl;
     weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP +
@@ -117,7 +117,9 @@ Player *System::findPlayerByName(string name) {
   throw logic_error(NOT_FOUND_MSG);
 }
 
-System::System() {}
+System::System() {
+  curWeekNum = 0;
+}
 
 System::~System() {
   for (auto rt : leagueTeams) {
@@ -133,7 +135,7 @@ System::~System() {
 
 StandingEntry System::calculateTeamStandingEntry(RealTeam *rt, int weekNum){
   StandingEntry se = {rt -> getName(), 0, 0, 0};
-  for(size_t i = 0; i < weekNum; i++){
+  for(int i = 0; i <= weekNum; i++){
     int teamInd = NA;
     int gameInd = NA;
     for(size_t j = 0; j < weeks[i]->games.size(); j++){
@@ -163,7 +165,7 @@ StandingEntry System::calculateTeamStandingEntry(RealTeam *rt, int weekNum){
 int System::whoWon(int weekNum, int gameInd){
   int ans[TEAMS_PARTICIPATING_IN_GAMES];
   for(int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++){
-    ans[i]= weeks[weekNum] -> games[gameInd] -> result[i];
+    ans[i] = weeks[weekNum] -> games[gameInd] -> result[i];
   }
   if(ans[0] > ans[1]){
     return 0;
@@ -197,4 +199,18 @@ bool standingEntryCmp(StandingEntry a, StandingEntry b){
     return true;
   }
   return false;
+}
+
+string System::leagueStandings(){
+  vector<StandingEntry> vec;
+  for(auto rt : leagueTeams){
+    vec.push_back(calculateTeamStandingEntry(rt, curWeekNum));
+  }
+  sort(vec.begin(), vec.end(), standingEntryCmp);
+  ostringstream os;
+  os << "league standings:" << endl;
+  for(size_t i = 0; i < leagueTeams.size(); i++){
+    os << (i + 1) << ". " << vec[i].teamName << ": " << "score: " << vec[i].score << " | GF: " << vec[i].gf << " | GA: " << vec[i].ga << endl;
+  }
+  return os.str();
 }
