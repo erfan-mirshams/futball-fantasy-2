@@ -1,9 +1,9 @@
-#include <iostream>
+#include "../include/general.h"
+#include "../include/io.h"
+#include "../include/system.h"
 
-using namespace std;
-
-int main(int argc, char *argv[]) {
-
-
+int main() {
+    System sys;
+    sys.ReadPremierLeagueInfo();
     return 0;
 }
