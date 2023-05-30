@@ -12,7 +12,7 @@ struct Week {
   map<Player *, bool> injured;
   map<Player *, bool> yellowCardRecieved;
   map<Player *, bool> redCardRecieved;
-  map<Player *, int> playerScore;
+  map<Player *, double> playerScore;
 };
 
 #endif // WEEK_H_

@@ -5,5 +5,6 @@
 int main() {
   System sys;
   sys.readPremierLeagueInfo();
+  sys.readWeeksInfo();
   return 0;
 }

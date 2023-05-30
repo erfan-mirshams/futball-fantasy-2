@@ -35,11 +35,13 @@ void System::readPremierLeagueInfo() {
 }
 
 void System::readWeeksInfo() {
-  int weekCnt = CSVFilesInDirCount(DATA_DIR + DIR_DELIM);
+  int weekCnt = CSVFilesInDirCount(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM);
+  cerr << "CNT: " << weekCnt << endl;
   for (size_t i = 1; i <= weekCnt; i++) {
     vector<vector<string>> weekContent;
-    weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + WEEK_FILE_TEMP +
-                          NAME_DELIM + to_string(i));
+    cerr << ": " << DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP + NAME_DELIM + to_string(i) + CSV_EXT << endl;
+    weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP +
+                          NAME_DELIM + to_string(i) + CSV_EXT);
     Week *week = new Week();
     for (size_t j = SKIPPED_LINE_CNT; j < weekContent.size(); j++) {
       Game *g = new Game;
@@ -48,7 +50,7 @@ void System::readWeeksInfo() {
           vector<string> gt;
           gt = splitString(weekContent[j][k], COLON_DELIM);
           g->team[0] = findTeamByName(gt[0]);
-          g->team[1] = findTeamByName(gt[2]);
+          g->team[1] = findTeamByName(gt[1]);
         }
         if (k == WEEK_RESULT) {
           vector<string> resultStr;
@@ -75,8 +77,23 @@ void System::readWeeksInfo() {
             }
           }
         }
+        if(k == WEEK_SCORES){
+          vector<string> scoreInstanceStr;
+          scoreInstanceStr = splitString(weekContent[j][k], FIELD_DELIM);
+          for(auto sis : scoreInstanceStr){
+            if(contains(sis, string(1, COLON_DELIM))){
+              vector<string> vec;
+              vec = splitString(sis, COLON_DELIM);
+              week->playerScore[findPlayerByName(vec[0])] = stod(vec[1]);
+            }
+            else{
+              week->playerScore[findPlayerByName(sis)] = 0;
+            }
+          }
+        }
       }
     }
+    weeks.push_back(week);
   }
 }
 
@@ -86,6 +103,7 @@ RealTeam *System::findTeamByName(string name) {
       return rt;
     }
   }
+  cerr << "TEAMNAME: " << name << endl;
   throw logic_error(NOT_FOUND_MSG);
 }
 
@@ -95,6 +113,7 @@ Player *System::findPlayerByName(string name) {
       return p;
     }
   }
+  cerr << "PLAYERNAME: " << name << endl;
   throw logic_error(NOT_FOUND_MSG);
 }
 
@@ -106,5 +125,8 @@ System::~System() {
   }
   for (auto p : players) {
     delete p;
+  }
+  for(auto w : weeks){
+    delete w;
   }
 }

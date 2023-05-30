@@ -21,7 +21,7 @@ const string DIR_DELIM = "/";
 const string NAME_DELIM = "_";
 const string PERMISSION_DENIED_ERR = "Permission Denied";
 const string CSV_EXT = ".csv";
-const string WEEK_DIR = "week_stats";
+const string WEEK_DIR = "weeks_stats";
 const string NOT_FOUND_MSG = "NOT FOUND";
 
 enum TEAMS_COLUMN {
@@ -39,4 +39,6 @@ enum WEEKS_COLUMN {
   WEEK_RED_CARDS,
   WEEK_SCORES
 };
+
+bool contains(string s, string t);
 #endif // GENERAL_H_
