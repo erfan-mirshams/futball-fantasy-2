@@ -130,3 +130,71 @@ System::~System() {
     delete w;
   }
 }
+
+StandingEntry System::calculateTeamStandingEntry(RealTeam *rt, int weekNum){
+  StandingEntry se = {rt -> getName(), 0, 0, 0};
+  for(size_t i = 0; i < weekNum; i++){
+    int teamInd = NA;
+    int gameInd = NA;
+    for(size_t j = 0; j < weeks[i]->games.size(); j++){
+      for(int k = 0; k < 2; k++){
+        if(weeks[i] -> games[j] -> team[k] == rt){
+          teamInd = k;
+          gameInd = j;
+        }
+      }
+      if(gameInd != NA){
+        break;
+      }
+    }
+    se.gf += weeks[i] -> games[gameInd] -> result[teamInd];
+    se.ga += weeks[i] -> games[gameInd] -> result[teamInd ^ 1];
+    int x = whoWon(weekNum, gameInd);
+    if(x == teamInd){
+      se.score += WINNING_SCORE;
+    }
+    if(x == 2){
+      se.score += DRAW_SCORE;
+    }
+  }
+  return se;
+}
+
+int System::whoWon(int weekNum, int gameInd){
+  int ans[TEAMS_PARTICIPATING_IN_GAMES];
+  for(int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++){
+    ans[i]= weeks[weekNum] -> games[gameInd] -> result[i];
+  }
+  if(ans[0] > ans[1]){
+    return 0;
+  }
+  if(ans[0] == ans[1]){
+    return 2;
+  }
+  return 1;
+}
+
+bool standingEntryCmp(StandingEntry a, StandingEntry b){
+  if(a.score > b.score){
+    return true;
+  }
+  if(b.score > a.score){
+    return false;
+  }
+  if(a.gf - a.ga > b.gf - b.ga){
+    return true;
+  }
+  if(b.gf - b.ga > a.gf - a.ga){
+    return false;
+  }
+  if(a.gf > b.gf){
+    return true;
+  }
+  if(b.gf > a.gf){
+    return false;
+  }
+  if(a.teamName < b.teamName){
+    return true;
+  }
+  return false;
+}

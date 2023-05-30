@@ -11,11 +11,15 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <utility>
 
 using namespace std;
 
 const int TEAMS_COLUMN_SIZE = 5;
 const int WEEKS_COLUMN_SIZE = 6;
+const int DRAW_SCORE = 1;
+const int WINNING_SCORE = 3;
+const int NA = -1;
 const string DATA_DIR = "data";
 const string DIR_DELIM = "/";
 const string NAME_DELIM = "_";
