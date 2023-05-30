@@ -11,4 +11,7 @@
 
 using namespace std;
 
+const int PLAYER_COLUMN_SIZE = 5;
+
+enum PLAYER_COLUMN{PLY_TEAM, PLY_GOAL_KEEPER, PLY_DEFENDER, PLY_MIDFIELDER, PLY_FORWARD};
 #endif // GENERAL_H_

@@ -37,3 +37,12 @@ vector<vector<string>> readCSV(string fileName){
     inputFile.close();
     return readFile;
 }
+
+vector<string> splitIntoWords(string str){
+    vector<string> elements;
+    string::iterator it = str.begin();
+    while(it != str.end()){
+        elements.push_back(wordFromPosition(it, str.end()));
+    }
+    return elements;
+}
