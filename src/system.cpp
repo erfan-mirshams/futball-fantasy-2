@@ -39,9 +39,12 @@ void System::readWeeksInfo() {
   cerr << "CNT: " << weekCnt << endl;
   for (int i = 1; i <= weekCnt; i++) {
     vector<vector<string>> weekContent;
-    cerr << ": " << DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP + NAME_DELIM + to_string(i) + CSV_EXT << endl;
-    weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP +
-                          NAME_DELIM + to_string(i) + CSV_EXT);
+    cerr << ": "
+         << DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP +
+                NAME_DELIM + to_string(i) + CSV_EXT
+         << endl;
+    weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM +
+                          WEEK_FILE_TEMP + NAME_DELIM + to_string(i) + CSV_EXT);
     Week *week = new Week();
     for (size_t j = SKIPPED_LINE_CNT; j < weekContent.size(); j++) {
       Game *g = new Game;
@@ -77,16 +80,15 @@ void System::readWeeksInfo() {
             }
           }
         }
-        if(k == WEEK_SCORES){
+        if (k == WEEK_SCORES) {
           vector<string> scoreInstanceStr;
           scoreInstanceStr = splitString(weekContent[j][k], FIELD_DELIM);
-          for(auto sis : scoreInstanceStr){
-            if(contains(sis, string(1, COLON_DELIM))){
+          for (auto sis : scoreInstanceStr) {
+            if (contains(sis, string(1, COLON_DELIM))) {
               vector<string> vec;
               vec = splitString(sis, COLON_DELIM);
               week->playerScore[findPlayerByName(vec[0])] = stod(vec[1]);
-            }
-            else{
+            } else {
               week->playerScore[findPlayerByName(sis)] = 0;
             }
           }
@@ -117,9 +119,7 @@ Player *System::findPlayerByName(string name) {
   throw logic_error(NOT_FOUND_MSG);
 }
 
-System::System() {
-  curWeekNum = 0;
-}
+System::System() { curWeekNum = 0; }
 
 System::~System() {
   for (auto rt : leagueTeams) {
@@ -128,89 +128,91 @@ System::~System() {
   for (auto p : players) {
     delete p;
   }
-  for(auto w : weeks){
+  for (auto w : weeks) {
     delete w;
   }
 }
 
-StandingEntry System::calculateTeamStandingEntry(RealTeam *rt, int weekNum){
-  StandingEntry se = {rt -> getName(), 0, 0, 0};
-  for(int i = 0; i <= weekNum; i++){
+StandingEntry System::calculateTeamStandingEntry(RealTeam *rt, int weekNum) {
+  StandingEntry se = {rt->getName(), 0, 0, 0};
+  for (int i = 0; i <= weekNum; i++) {
     int teamInd = NA;
     int gameInd = NA;
-    for(size_t j = 0; j < weeks[i]->games.size(); j++){
-      for(int k = 0; k < 2; k++){
-        if(weeks[i] -> games[j] -> team[k] == rt){
+    for (size_t j = 0; j < weeks[i]->games.size(); j++) {
+      for (int k = 0; k < 2; k++) {
+        if (weeks[i]->games[j]->team[k] == rt) {
           teamInd = k;
           gameInd = j;
         }
       }
-      if(gameInd != NA){
+      if (gameInd != NA) {
         break;
       }
     }
-    se.gf += weeks[i] -> games[gameInd] -> result[teamInd];
-    se.ga += weeks[i] -> games[gameInd] -> result[teamInd ^ 1];
+    se.gf += weeks[i]->games[gameInd]->result[teamInd];
+    se.ga += weeks[i]->games[gameInd]->result[teamInd ^ 1];
     int x = whoWon(weekNum, gameInd);
-    if(x == teamInd){
+    if (x == teamInd) {
       se.score += WINNING_SCORE;
     }
-    if(x == 2){
+    if (x == 2) {
       se.score += DRAW_SCORE;
     }
   }
   return se;
 }
 
-int System::whoWon(int weekNum, int gameInd){
+int System::whoWon(int weekNum, int gameInd) {
   int ans[TEAMS_PARTICIPATING_IN_GAMES];
-  for(int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++){
-    ans[i] = weeks[weekNum] -> games[gameInd] -> result[i];
+  for (int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++) {
+    ans[i] = weeks[weekNum]->games[gameInd]->result[i];
   }
-  if(ans[0] > ans[1]){
+  if (ans[0] > ans[1]) {
     return 0;
   }
-  if(ans[0] == ans[1]){
+  if (ans[0] == ans[1]) {
     return 2;
   }
   return 1;
 }
 
-bool standingEntryCmp(StandingEntry a, StandingEntry b){
-  if(a.score > b.score){
+bool standingEntryCmp(StandingEntry a, StandingEntry b) {
+  if (a.score > b.score) {
     return true;
   }
-  if(b.score > a.score){
+  if (b.score > a.score) {
     return false;
   }
-  if(a.gf - a.ga > b.gf - b.ga){
+  if (a.gf - a.ga > b.gf - b.ga) {
     return true;
   }
-  if(b.gf - b.ga > a.gf - a.ga){
+  if (b.gf - b.ga > a.gf - a.ga) {
     return false;
   }
-  if(a.gf > b.gf){
+  if (a.gf > b.gf) {
     return true;
   }
-  if(b.gf > a.gf){
+  if (b.gf > a.gf) {
     return false;
   }
-  if(a.teamName < b.teamName){
+  if (a.teamName < b.teamName) {
     return true;
   }
   return false;
 }
 
-string System::leagueStandings(){
+string System::leagueStandings() {
   vector<StandingEntry> vec;
-  for(auto rt : leagueTeams){
+  for (auto rt : leagueTeams) {
     vec.push_back(calculateTeamStandingEntry(rt, curWeekNum));
   }
   sort(vec.begin(), vec.end(), standingEntryCmp);
   ostringstream os;
   os << "league standings:" << endl;
-  for(size_t i = 0; i < leagueTeams.size(); i++){
-    os << (i + 1) << ". " << vec[i].teamName << ": " << "score: " << vec[i].score << " | GF: " << vec[i].gf << " | GA: " << vec[i].ga << endl;
+  for (size_t i = 0; i < leagueTeams.size(); i++) {
+    os << (i + 1) << ". " << vec[i].teamName << ": "
+       << "score: " << vec[i].score << " | GF: " << vec[i].gf
+       << " | GA: " << vec[i].ga << endl;
   }
   return os.str();
 }
