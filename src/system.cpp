@@ -35,7 +35,12 @@ void System::readPremierLeagueInfo(){
 }
 
 void System::readWeeksInfo(){
-
+    int weekCnt = CSVFilesInDirCount(DATA_DIR + DIR_DELIM);
+    for(size_t i = 1; i <= weekCnt; i++){
+        vector<vector<string>> weekContent;
+        weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + WEEK_FILE_TEMP + NAME_DELIM + to_string(i));
+        //for(size_t j = SKIPPED_LINE_CNT; )
+    }
 }
 
 System::System(){
