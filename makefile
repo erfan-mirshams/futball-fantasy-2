@@ -3,8 +3,8 @@
 #
 # @file
 # @version 0.1
-CFLAGS = -c -Wall -Wextra
-LFLAGS = -Wall -Wextra -fsanitize=address -fsanitize=undefined -fsanitize=leak
+CFLAGS = -c -std=c++11 -Wall -Wextra
+LFLAGS = -std=c++11 -Wall -Wextra -fsanitize=address -fsanitize=undefined -fsanitize=leak
 
 SRC_DIR = src
 BUILD_DIR = build
