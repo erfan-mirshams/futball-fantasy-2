@@ -1,4 +1,5 @@
 #include "../include/system.h"
+#include <sstream>
 
 void System::readPremierLeagueInfo() {
   vector<vector<string>> CSVFileContent =
@@ -213,6 +214,34 @@ string System::leagueStandings() {
     os << (i + 1) << ". " << vec[i].teamName << ": "
        << "score: " << vec[i].score << " | GF: " << vec[i].gf
        << " | GA: " << vec[i].ga << endl;
+  }
+  return os.str();
+}
+
+string System::teamOfTheWeek(int weekNum) {
+  Player *teamOfTheWeek[FANTASY_TEAM_SIZE];
+  double scoreOfTheWeek[FANTASY_TEAM_SIZE];
+  for (auto p : players) {
+    double score = weeks[weekNum]->playerScore[p];
+    for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
+      if (p->getRole() != FANTASY_ROLES[i]) {
+        continue;
+      }
+      if (teamOfTheWeek[i] == nullptr || score > scoreOfTheWeek[i] ||
+          (score == scoreOfTheWeek[i] &&
+           p->getName() < teamOfTheWeek[i]->getName())) {
+        teamOfTheWeek[i] = p;
+        scoreOfTheWeek[i] = score;
+        break;
+      }
+    }
+  }
+  const string prefixStr[FANTASY_TEAM_SIZE] = {
+      "GoalKeeper", "Defender 1", "Defender 2", "Midfielder", "Forward"};
+  ostringstream os;
+  for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
+    os << prefixStr[i] << COLON_DELIM << " " << teamOfTheWeek[i]->getName()
+       << " | score: " << scoreOfTheWeek[i] << endl;
   }
   return os.str();
 }

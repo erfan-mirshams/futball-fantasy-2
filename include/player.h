@@ -10,7 +10,7 @@ public:
   Player(string _name, Role _role);
   virtual ~Player();
   inline string getName() { return name; }
-
+  inline Role getRole() {return role;}
 private:
   string name;
   Role role;

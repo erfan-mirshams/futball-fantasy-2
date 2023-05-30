@@ -4,8 +4,6 @@
 #include "account.h"
 #include "player.h"
 
-const int DEFENDER_CAP = 2;
-
 class User : public Account {
 public:
   User(string _name, string _pass);

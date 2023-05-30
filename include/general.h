@@ -18,9 +18,11 @@ using namespace std;
 
 const int TEAMS_COLUMN_SIZE = 5;
 const int WEEKS_COLUMN_SIZE = 6;
+const int DEFENDER_CAP = 2;
 const int DRAW_SCORE = 1;
 const int WINNING_SCORE = 3;
 const int NA = -1;
+const int FANTASY_TEAM_SIZE = 5;
 const string DATA_DIR = "data";
 const string DIR_DELIM = "/";
 const string NAME_DELIM = "_";
@@ -28,6 +30,12 @@ const string PERMISSION_DENIED_ERR = "Permission Denied";
 const string CSV_EXT = ".csv";
 const string WEEK_DIR = "weeks_stats";
 const string NOT_FOUND_MSG = "NOT FOUND";
+const string GET_CMD_STR = "GET";
+const string POST_CMD_STR = "POST";
+const string PUT_CMD_STR = "PUT";
+const string DELETE_CMD_STR = "DELETE";
+const string TEAM_OF_THE_WEEK_CMD = "team_of_the_week";
+const string QM = "?";
 
 enum TEAMS_COLUMN {
   TEAM_NAME,

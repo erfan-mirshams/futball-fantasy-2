@@ -9,6 +9,7 @@
 
 const string PREMIER_LEAGUE_FILE = "premier_league.csv";
 const string WEEK_FILE_TEMP = "week";
+const Role FANTASY_ROLES[FANTASY_TEAM_SIZE] = {GOAL_KEEPER, DEFENDER, DEFENDER, MIDFIELDER, FORWARD};
 
 struct StandingEntry{
   string teamName;
@@ -28,6 +29,7 @@ public:
   StandingEntry calculateTeamStandingEntry(RealTeam* rt, int weekNum);
   int whoWon(int weekNum, int gameInd);
   string leagueStandings();
+  string teamOfTheWeek(int weekNum);
 private:
   int curWeekNum;
   vector<RealTeam *> leagueTeams;
