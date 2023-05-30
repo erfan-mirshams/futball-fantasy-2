@@ -4,6 +4,6 @@
 
 int main() {
     System sys;
-    sys.ReadPremierLeagueInfo();
+    sys.readPremierLeagueInfo();
     return 0;
 }

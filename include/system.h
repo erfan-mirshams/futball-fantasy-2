@@ -12,8 +12,8 @@ const string WEEK_FILE_TEMP = "week";
 
 class System{
 public:
-    void ReadPremierLeagueInfo();
-    void ReadWeeksInfo();
+    void readPremierLeagueInfo();
+    void readWeeksInfo();
     System();
     virtual ~System();
 private:

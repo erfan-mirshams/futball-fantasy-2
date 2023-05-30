@@ -1,6 +1,6 @@
 #include "../include/system.h"
 
-void System::ReadPremierLeagueInfo(){
+void System::readPremierLeagueInfo(){
     vector<vector<string>> CSVFileContent = readCSV(DATA_DIR + DIR_DELIM + PREMIER_LEAGUE_FILE);
     for (size_t i = SKIPPED_LINE_CNT; i < CSVFileContent.size(); i++) {
         RealTeam *rt;
@@ -32,6 +32,10 @@ void System::ReadPremierLeagueInfo(){
         }
         leagueTeams.push_back(rt);
     }
+}
+
+void System::readWeeksInfo(){
+
 }
 
 System::System(){
