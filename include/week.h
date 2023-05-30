@@ -5,13 +5,14 @@
 #include "game.h"
 #include "player.h"
 
-class Week{
-private:
-    vector<Game> games;
-    map<Player*, bool> injured;
-    map<Player*, bool> yellowCardRecieved;
-    map<Player*, bool> redCardRecieved;
-    map<Player*, int> playerScore;
+struct Week {
+  Week();
+  virtual ~Week();
+  vector<Game *> games;
+  map<Player *, bool> injured;
+  map<Player *, bool> yellowCardRecieved;
+  map<Player *, bool> redCardRecieved;
+  map<Player *, int> playerScore;
 };
 
 #endif // WEEK_H_

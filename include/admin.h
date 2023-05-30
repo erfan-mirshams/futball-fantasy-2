@@ -3,10 +3,10 @@
 
 #include "account.h"
 
-class Admin : public Account{
+class Admin : public Account {
 public:
-    Admin(string _name, string _pass);
-    virtual ~Admin();
+  Admin(string _name, string _pass);
+  virtual ~Admin();
 };
 
 #endif // ADMIN_H_

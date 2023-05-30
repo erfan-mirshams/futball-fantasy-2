@@ -6,15 +6,16 @@
 
 const int DEFENDER_CAP = 2;
 
-class User : public Account{
+class User : public Account {
 public:
-    User(string _name, string _pass);
-    virtual ~User();
+  User(string _name, string _pass);
+  virtual ~User();
+
 private:
-    Player* goalKeeper;
-    Player* defenders[DEFENDER_CAP];
-    Player* midfielder;
-    Player* forward;
+  Player *goalKeeper;
+  Player *defenders[DEFENDER_CAP];
+  Player *midfielder;
+  Player *forward;
 };
 
 #endif // USER_H_

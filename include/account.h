@@ -3,14 +3,15 @@
 
 #include "general.h"
 
-class Account{
+class Account {
 public:
-    Account(string _name, string _pass);
-    bool authenticate(string _pass);
-    virtual ~Account();
+  Account(string _name, string _pass);
+  bool authenticate(string _pass);
+  virtual ~Account();
+
 protected:
-    string name;
-    string pass;
+  string name;
+  string pass;
 };
 
 #endif // ACCOUNT_H_

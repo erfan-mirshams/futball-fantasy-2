@@ -1,57 +1,110 @@
 #include "../include/system.h"
 
-void System::readPremierLeagueInfo(){
-    vector<vector<string>> CSVFileContent = readCSV(DATA_DIR + DIR_DELIM + PREMIER_LEAGUE_FILE);
-    for (size_t i = SKIPPED_LINE_CNT; i < CSVFileContent.size(); i++) {
-        RealTeam *rt;
-        Player *p;
-        for (size_t j = 0; j < TEAMS_COLUMN_SIZE; j++) {
-            if (j == TEAM_NAME) {
-                rt = new RealTeam(CSVFileContent[i][j]);
-            }
-            vector<string> playerStr =
-                splitString(CSVFileContent[i][j], FIELD_DELIM);
-            Role r;
-            if (j == TEAM_GOAL_KEEPER) {
-                r = GOAL_KEEPER;
-            }
-            if (j == TEAM_DEFENDER) {
-                r = DEFENDER;
-            }
-            if (j == TEAM_MIDFIELDER) {
-                r = MIDFIELDER;
-            }
-            if (j == TEAM_FORWARD) {
-                r = FORWARD;
-            }
-            for (size_t k = 0; k < playerStr.size(); k++) {
-                p = new Player(playerStr[k], r);
-                players.push_back(p);
-                rt->pushPlayer(p);
-            }
+void System::readPremierLeagueInfo() {
+  vector<vector<string>> CSVFileContent =
+      readCSV(DATA_DIR + DIR_DELIM + PREMIER_LEAGUE_FILE);
+  for (size_t i = SKIPPED_LINE_CNT; i < CSVFileContent.size(); i++) {
+    RealTeam *rt;
+    Player *p;
+    for (size_t j = 0; j < TEAMS_COLUMN_SIZE; j++) {
+      if (j == TEAM_NAME) {
+        rt = new RealTeam(CSVFileContent[i][j]);
+      }
+      vector<string> playerStr = splitString(CSVFileContent[i][j], FIELD_DELIM);
+      Role r;
+      if (j == TEAM_GOAL_KEEPER) {
+        r = GOAL_KEEPER;
+      }
+      if (j == TEAM_DEFENDER) {
+        r = DEFENDER;
+      }
+      if (j == TEAM_MIDFIELDER) {
+        r = MIDFIELDER;
+      }
+      if (j == TEAM_FORWARD) {
+        r = FORWARD;
+      }
+      for (size_t k = 0; k < playerStr.size(); k++) {
+        p = new Player(playerStr[k], r);
+        players.push_back(p);
+        rt->pushPlayer(p);
+      }
+    }
+    leagueTeams.push_back(rt);
+  }
+}
+
+void System::readWeeksInfo() {
+  int weekCnt = CSVFilesInDirCount(DATA_DIR + DIR_DELIM);
+  for (size_t i = 1; i <= weekCnt; i++) {
+    vector<vector<string>> weekContent;
+    weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + WEEK_FILE_TEMP +
+                          NAME_DELIM + to_string(i));
+    Week *week = new Week();
+    for (size_t j = SKIPPED_LINE_CNT; j < weekContent.size(); j++) {
+      Game *g = new Game;
+      for (size_t k = 0; k < WEEKS_COLUMN_SIZE; k++) {
+        if (k == WEEK_MATCH) {
+          vector<string> gt;
+          gt = splitString(weekContent[j][k], COLON_DELIM);
+          g->team[0] = findTeamByName(gt[0]);
+          g->team[1] = findTeamByName(gt[2]);
         }
-        leagueTeams.push_back(rt);
+        if (k == WEEK_RESULT) {
+          vector<string> resultStr;
+          resultStr = splitString(weekContent[j][k], COLON_DELIM);
+          g->result[0] = stoi(resultStr[0]);
+          g->result[1] = stoi(resultStr[1]);
+          week->games.push_back(g);
+        }
+        {
+          vector<string> playerStr;
+          if (k == WEEK_INJURED || k == WEEK_YELLOW_CARDS ||
+              k == WEEK_RED_CARDS) {
+            playerStr = splitString(weekContent[j][k], FIELD_DELIM);
+            for (auto x : playerStr) {
+              if (k == WEEK_INJURED) {
+                week->injured[findPlayerByName(x)] = true;
+              }
+              if (k == WEEK_YELLOW_CARDS) {
+                week->yellowCardRecieved[findPlayerByName(x)] = true;
+              }
+              if (k == WEEK_RED_CARDS) {
+                week->redCardRecieved[findPlayerByName(x)] = true;
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
 
-void System::readWeeksInfo(){
-    int weekCnt = CSVFilesInDirCount(DATA_DIR + DIR_DELIM);
-    for(size_t i = 1; i <= weekCnt; i++){
-        vector<vector<string>> weekContent;
-        weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + WEEK_FILE_TEMP + NAME_DELIM + to_string(i));
-        //for(size_t j = SKIPPED_LINE_CNT; )
+RealTeam *System::findTeamByName(string name) {
+  for (auto rt : leagueTeams) {
+    if (rt->getName() == name) {
+      return rt;
     }
+  }
+  throw logic_error(NOT_FOUND_MSG);
 }
 
-System::System(){
-
+Player *System::findPlayerByName(string name) {
+  for (auto p : players) {
+    if (p->getName() == name) {
+      return p;
+    }
+  }
+  throw logic_error(NOT_FOUND_MSG);
 }
 
-System::~System(){
-    for(auto rt : leagueTeams){
-        delete rt;
-    }
-    for(auto p : players){
-        delete p;
-    }
+System::System() {}
+
+System::~System() {
+  for (auto rt : leagueTeams) {
+    delete rt;
+  }
+  for (auto p : players) {
+    delete p;
+  }
 }

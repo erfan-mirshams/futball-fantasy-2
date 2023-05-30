@@ -3,18 +3,20 @@
 
 #include "general.h"
 
-enum Role{GOAL_KEEPER, DEFENDER, MIDFIELDER, FORWARD};
+enum Role { GOAL_KEEPER, DEFENDER, MIDFIELDER, FORWARD };
 
-class Player{
+class Player {
 public:
-    Player(string _name, Role _role);
-    virtual ~Player();
+  Player(string _name, Role _role);
+  virtual ~Player();
+  inline string getName() { return name; }
+
 private:
-    string name;
-    Role role;
-    int yellowCardCnt;
-    bool haveRedCard;
-    int suspendedWeeks;
+  string name;
+  Role role;
+  int yellowCardCnt;
+  bool haveRedCard;
+  int suspendedWeeks;
 };
 
 #endif // PLAYER_H_

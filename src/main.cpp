@@ -3,7 +3,7 @@
 #include "../include/system.h"
 
 int main() {
-    System sys;
-    sys.readPremierLeagueInfo();
-    return 0;
+  System sys;
+  sys.readPremierLeagueInfo();
+  return 0;
 }

@@ -4,14 +4,16 @@
 #include "general.h"
 #include "player.h"
 
-class RealTeam{
+class RealTeam {
 public:
-    RealTeam(string _name);
-    void pushPlayer(Player* p);
-    virtual ~RealTeam();
+  RealTeam(string _name);
+  void pushPlayer(Player *p);
+  virtual ~RealTeam();
+  inline string getName() { return name; }
+
 private:
-    string name;
-    vector<Player*> players;
+  string name;
+  vector<Player *> players;
 };
 
 #endif // REAL_TEAM_H_
