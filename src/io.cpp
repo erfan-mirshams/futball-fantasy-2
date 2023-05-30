@@ -38,6 +38,22 @@ vector<vector<string>> readCSV(string fileName){
     return readFile;
 }
 
+string wordFromPosition(string::iterator &it, string::iterator fn) {
+    while (isspace(*(it++)))
+        ;
+    --it;
+    string::iterator i = it;
+    string res = "";
+    for (; i != fn; ++i) {
+        if (isspace(*i)) {
+            break;
+        }
+        res.push_back(*i);
+    }
+    swap(i, it);
+    return res;
+}
+
 vector<string> splitIntoWords(string str){
     vector<string> elements;
     string::iterator it = str.begin();
