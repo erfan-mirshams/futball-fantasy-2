@@ -36,13 +36,11 @@ void System::readPremierLeagueInfo() {
 
 void System::readWeeksInfo() {
   int weekCnt = CSVFilesInDirCount(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM);
-  cerr << "CNT: " << weekCnt << endl;
   for (int i = 1; i <= weekCnt; i++) {
     vector<vector<string>> weekContent;
-    cerr << ": "
-         << DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP +
-                NAME_DELIM + to_string(i) + CSV_EXT
-         << endl;
+    << DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP +
+            NAME_DELIM + to_string(i) + CSV_EXT
+    << endl;
     weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM +
                           WEEK_FILE_TEMP + NAME_DELIM + to_string(i) + CSV_EXT);
     Week *week = new Week();
@@ -105,7 +103,6 @@ RealTeam *System::findTeamByName(string name) {
       return rt;
     }
   }
-  cerr << "TEAMNAME: " << name << endl;
   throw logic_error(NOT_FOUND_MSG);
 }
 
@@ -115,7 +112,6 @@ Player *System::findPlayerByName(string name) {
       return p;
     }
   }
-  cerr << "PLAYERNAME: " << name << endl;
   throw logic_error(NOT_FOUND_MSG);
 }
 

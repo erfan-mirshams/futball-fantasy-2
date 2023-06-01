@@ -88,6 +88,5 @@ int main() {
   while (getline(cin, CMDLine)) {
     cout << handleCommand(sys, splitIntoWords(CMDLine));
   }
-  cerr << sys.leagueStandings();
   return 0;
 }
