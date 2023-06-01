@@ -317,6 +317,12 @@ void System::verifyAdmin() {
   }
 }
 
+void System::verifyUser() {
+  if (curAccount == nullptr || (curAccount->isAdmin())) {
+    throw logic_error(PERMISSION_DENIED_ERR);
+  }
+}
+
 string System::openTransferWindow() {
   verifyAdmin();
   isTransferWindowOpen = true;
@@ -326,5 +332,27 @@ string System::openTransferWindow() {
 string System::closeTransferWindow() {
   verifyAdmin();
   isTransferWindowOpen = false;
+  return OK_STR + "\n";
+}
+
+string System::sellPlayer(string _name) {
+  verifyUser();
+  Player *p = findPlayerByName(_name);
+  if (!isTransferWindowOpen) {
+    throw logic_error(PERMISSION_DENIED_ERR);
+  }
+  User *curUser = dynamic_cast<User *>(curAccount);
+  curUser->sellPlayer(p);
+  return OK_STR + "\n";
+}
+
+string System::buyPlayer(string _name) {
+  verifyUser();
+  Player *p = findPlayerByName(_name);
+  if (!isTransferWindowOpen) {
+    throw logic_error(PERMISSION_DENIED_ERR);
+  }
+  User *curUser = dynamic_cast<User *>(curAccount);
+  curUser->buyPlayer(p);
   return OK_STR + "\n";
 }

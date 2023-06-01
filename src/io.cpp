@@ -76,3 +76,12 @@ int CSVFilesInDirCount(string path) {
   closedir(dir);
   return count;
 }
+
+string stitchWordsWithSpace(vector<string> words) {
+  string res = "";
+  for (auto w : words) {
+    res += w + " ";
+  }
+  res = trimBoth(res);
+  return res;
+}

@@ -10,6 +10,11 @@ public:
   User(string _name, string _pass);
   virtual ~User();
   bool isAdmin() { return false; }
+  void sellPlayer(Player *p);
+  bool hasCompleteTeam();
+  int firstEmptyRole(Role r);
+  int findPlayerId(Player *p);
+  void buyPlayer(Player *p);
 
 private:
   Player *fantasyTeam[FANTASY_TEAM_SIZE];

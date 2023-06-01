@@ -42,6 +42,14 @@ string handlePostCommand(System &sys, vector<string> vecStr) {
   if (vecStr[0] == OPEN_TRANSFER_CMD) {
     return sys.openTransferWindow();
   }
+  if (vecStr[0] == SELL_PLAYER_CMD) {
+    vector<string> pName(vecStr.begin() + 3, vecStr.end());
+    return sys.sellPlayer(stitchWordsWithSpace(pName));
+  }
+  if (vecStr[0] == BUY_PLAYER_CMD) {
+    vector<string> pName(vecStr.begin() + 3, vecStr.end());
+    return sys.buyPlayer(stitchWordsWithSpace(pName));
+  }
   throw logic_error(NOT_FOUND_MSG);
 }
 

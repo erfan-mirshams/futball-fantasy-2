@@ -3,18 +3,24 @@
 
 #include "general.h"
 
+const int YELLOW_CARD_CAP = 3;
+const int INJURY_SUSPENSION = 3;
+
 class Player {
 public:
   Player(string _name, Role _role);
   virtual ~Player();
   inline string getName() { return name; }
   inline Role getRole() { return role; }
+  inline bool isSuspended() { return suspendedWeeks; }
+  void redCardPenalty();
+  void yellowCardPenalty();
+  inline void injuryPenalty() { suspendedWeeks = INJURY_SUSPENSION; };
 
 private:
   string name;
   Role role;
   int yellowCardCnt;
-  bool haveRedCard;
   int suspendedWeeks;
 };
 

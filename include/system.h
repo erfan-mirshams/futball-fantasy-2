@@ -39,8 +39,11 @@ public:
   inline int getCurWeekNum() { return curWeekNum; }
   string logOut();
   void verifyAdmin();
+  void verifyUser();
   string openTransferWindow();
   string closeTransferWindow();
+  string sellPlayer(string _name);
+  string buyPlayer(string _name);
 
 private:
   int curWeekNum;
