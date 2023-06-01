@@ -47,6 +47,7 @@ public:
   string passWeek();
   string getSquad();
   string getSquad(string userName);
+  string usersRanking();
 
 private:
   int curWeekNum;

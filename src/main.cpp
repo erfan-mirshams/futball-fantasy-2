@@ -26,6 +26,9 @@ string handleGetCommand(System &sys, vector<string> vecStr) {
     }
     return sys.getSquad();
   }
+  if (vecStr[0] == USERS_RANKING_CMD) {
+    return sys.usersRanking();
+  }
   throw logic_error(NOT_FOUND_MSG);
 }
 

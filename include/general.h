@@ -54,6 +54,7 @@ const string PASS_WEEK_CMD = "pass_week";
 const string SQUAD_CMD = "squad";
 const string NOT_AVAILABLE_PLAYER_ERR =
     "This player is not available for next week";
+const string USERS_RANKING_CMD = "users_ranking";
 const string QM = "?";
 
 enum TEAMS_COLUMN {

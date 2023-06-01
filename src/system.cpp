@@ -409,3 +409,21 @@ string System::getSquad(string userName) {
   os << "Total points" << COLON_DELIM << " " << u->getPoint() << endl;
   return os.str();
 }
+
+bool userCmp(User *a, User *b) {
+  if (a->getPoint() == b->getPoint()) {
+    return a->getName() > b->getName();
+  }
+  return a->getPoint() < b->getPoint();
+}
+
+string System::usersRanking() {
+  sort(users.begin(), users.end(), userCmp);
+  ostringstream os;
+  int i = 0;
+  for (auto u : users) {
+    os << ++i << ". team_name" << COLON_DELIM << " " << u->getName()
+       << " | point" << COLON_DELIM << " " << u->getPoint() << endl;
+  }
+  return os.str();
+}
