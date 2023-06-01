@@ -274,5 +274,18 @@ string System::signUp(string _name, string _password) {
     throw logic_error(BAD_REQUEST_ERR);
   }
   users.push_back(new User(_name, _password));
+  logIn(_name, _password);
   return OK_STR + "\n";
+}
+
+string System::logIn(string _name, string _password) {
+  User *u = findUserByName(_name);
+  if (u == nullptr) {
+    throw logic_error(NOT_FOUND_MSG);
+  }
+  if (u->authenticate(_password)) {
+    curAccount = u;
+    return OK_STR + "\n";
+  }
+  throw logic_error(PERMISSION_DENIED_ERR);
 }

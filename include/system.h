@@ -32,11 +32,13 @@ public:
   string teamOfTheWeek(int weekNum);
   string matchesResult(int weekNum);
   string signUp(string _name, string _password);
+  string logIn(string _name, string _password);
   User *findUserByName(string name);
   inline int getCurWeekNum() { return curWeekNum; }
 
 private:
   int curWeekNum;
+  Account *curAccount;
   vector<RealTeam *> leagueTeams;
   vector<Player *> players;
   vector<Week *> weeks;

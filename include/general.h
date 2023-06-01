@@ -37,6 +37,7 @@ const string PUT_CMD_STR = "PUT";
 const string DELETE_CMD_STR = "DELETE";
 const string OK_STR = "OK";
 const string SIGNUP_CMD = "signup";
+const string LOGIN_CMD = "login";
 const string TEAM_OF_THE_WEEK_CMD = "team_of_the_week";
 const string LEAUGE_STANDINGS_CMD = "league_standings";
 const string MATCHES_RESULT_LEAGUE_CMD = "matches_result_league";

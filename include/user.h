@@ -9,6 +9,7 @@ class User : public Account {
 public:
   User(string _name, string _pass);
   virtual ~User();
+  bool isAdmin() { return false; }
 
 private:
   Player *fantasyTeam[FANTASY_TEAM_SIZE];

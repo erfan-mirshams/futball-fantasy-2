@@ -9,6 +9,7 @@ public:
   bool authenticate(string _pass);
   virtual inline string getName() { return name; }
   virtual ~Account();
+  virtual bool isAdmin() = 0;
 
 protected:
   string name;

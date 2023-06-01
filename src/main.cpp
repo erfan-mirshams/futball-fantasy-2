@@ -27,6 +27,9 @@ string handlePostCommand(System &sys, vector<string> vecStr) {
   if (vecStr[0] == SIGNUP_CMD) {
     return sys.signUp(vecStr[3], vecStr[5]);
   }
+  if (vecStr[0] == LOGIN_CMD) {
+    return sys.logIn(vecStr[3], vecStr[5]);
+  }
   throw logic_error(NOT_FOUND_MSG);
 }
 
