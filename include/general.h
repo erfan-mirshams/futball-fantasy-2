@@ -49,6 +49,7 @@ const string CLOSE_TRANSFER_CMD = "close_transfer_window";
 const string OPEN_TRANSFER_CMD = "open_transfer_window";
 const string SELL_PLAYER_CMD = "sell_player";
 const string BUY_PLAYER_CMD = "buy_player";
+const string PASS_WEEK_CMD = "pass_week";
 const string NOT_AVAILABLE_PLAYER_ERR =
     "This player is not available for next week";
 const string QM = "?";

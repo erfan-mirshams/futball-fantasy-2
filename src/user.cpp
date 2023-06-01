@@ -1,6 +1,7 @@
 #include "../include/user.h"
 
 User::User(string _name, string _pass) : Account(_name, _pass) {
+  point = 0;
   for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
     fantasyTeam[i] = nullptr;
   }
@@ -60,4 +61,21 @@ void User::buyPlayer(Player *p) {
     throw logic_error(NOT_AVAILABLE_PLAYER_ERR);
   }
   fantasyTeam[fer] = p;
+}
+
+void User::addPoints(Week *w) {
+  double sum = 0;
+  bool flag = true;
+  if (hasCompleteTeam()) {
+    for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
+      if (fantasyTeam[i]->isSuspended()) {
+        flag = false;
+        break;
+      }
+      sum += w->playerScore[fantasyTeam[i]];
+    }
+    if (flag) {
+      point += sum;
+    }
+  }
 }

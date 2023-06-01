@@ -50,6 +50,9 @@ string handlePostCommand(System &sys, vector<string> vecStr) {
     vector<string> pName(vecStr.begin() + 3, vecStr.end());
     return sys.buyPlayer(stitchWordsWithSpace(pName));
   }
+  if (vecStr[0] == PASS_WEEK_CMD) {
+    return sys.passWeek();
+  }
   throw logic_error(NOT_FOUND_MSG);
 }
 

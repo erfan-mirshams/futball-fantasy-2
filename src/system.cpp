@@ -159,7 +159,7 @@ StandingEntry System::calculateTeamStandingEntry(RealTeam *rt, int weekNum) {
     }
     se.gf += weeks[i]->games[gameInd]->result[teamInd];
     se.ga += weeks[i]->games[gameInd]->result[teamInd ^ 1];
-    int x = whoWon(weekNum, gameInd);
+    int x = whoWon(i, gameInd);
     if (x == teamInd) {
       se.score += WINNING_SCORE;
     }
@@ -354,5 +354,32 @@ string System::buyPlayer(string _name) {
   }
   User *curUser = dynamic_cast<User *>(curAccount);
   curUser->buyPlayer(p);
+  return OK_STR + "\n";
+}
+
+string System::passWeek() {
+  verifyAdmin();
+  for (auto u : users) {
+    u->addPoints(weeks[curWeekNum]);
+  }
+  for (auto p : players) {
+    p->passWeekUpdate();
+  }
+  for (auto x : (weeks[curWeekNum]->injured)) {
+    if (x.second) {
+      (x.first)->injuryPenalty();
+    }
+  }
+  for (auto x : (weeks[curWeekNum]->redCardRecieved)) {
+    if (x.second) {
+      (x.first)->redCardPenalty();
+    }
+  }
+  for (auto x : (weeks[curWeekNum]->yellowCardRecieved)) {
+    if (x.second) {
+      (x.first)->yellowCardPenalty();
+    }
+  }
+  curWeekNum++;
   return OK_STR + "\n";
 }

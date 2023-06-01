@@ -15,7 +15,11 @@ public:
   inline bool isSuspended() { return suspendedWeeks; }
   void redCardPenalty();
   void yellowCardPenalty();
-  inline void injuryPenalty() { suspendedWeeks = INJURY_SUSPENSION; };
+  inline void injuryPenalty() { suspendedWeeks = INJURY_SUSPENSION; }
+  inline void passWeekUpdate() {
+    suspendedWeeks--;
+    suspendedWeeks = max(suspendedWeeks, 0);
+  }
 
 private:
   string name;

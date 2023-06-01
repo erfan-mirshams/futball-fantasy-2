@@ -44,6 +44,7 @@ public:
   string closeTransferWindow();
   string sellPlayer(string _name);
   string buyPlayer(string _name);
+  string passWeek();
 
 private:
   int curWeekNum;
