@@ -37,6 +37,7 @@ public:
   string registerAdmin(string _name, string _password);
   User *findUserByName(string name);
   inline int getCurWeekNum() { return curWeekNum; }
+  string logOut();
 
 private:
   int curWeekNum;

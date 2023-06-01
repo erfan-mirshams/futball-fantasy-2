@@ -44,6 +44,7 @@ const string REGISTER_ADMIN_CMD = "register_admin";
 const string TEAM_OF_THE_WEEK_CMD = "team_of_the_week";
 const string LEAUGE_STANDINGS_CMD = "league_standings";
 const string MATCHES_RESULT_LEAGUE_CMD = "matches_result_league";
+const string LOGOUT_CMD = "logout";
 const string QM = "?";
 
 enum TEAMS_COLUMN {

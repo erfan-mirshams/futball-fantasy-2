@@ -120,6 +120,7 @@ Player *System::findPlayerByName(string name) {
 }
 
 System::System() {
+  logOut();
   curWeekNum = 0;
   admin = Admin(DEF_ADMIN_USER, DEF_ADMIN_PASS);
 }
@@ -302,4 +303,9 @@ string System::registerAdmin(string _name, string _password) {
     return OK_STR + "\n";
   }
   throw logic_error(BAD_REQUEST_ERR);
+}
+
+string System::logOut() {
+  curAccount = nullptr;
+  return OK_STR + "\n";
 }

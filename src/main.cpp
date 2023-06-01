@@ -33,6 +33,9 @@ string handlePostCommand(System &sys, vector<string> vecStr) {
   if (vecStr[0] == REGISTER_ADMIN_CMD) {
     return sys.registerAdmin(vecStr[3], vecStr[5]);
   }
+  if (vecStr[0] == LOGOUT_CMD) {
+    return sys.logOut();
+  }
   throw logic_error(NOT_FOUND_MSG);
 }
 
