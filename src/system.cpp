@@ -38,9 +38,6 @@ void System::readWeeksInfo() {
   int weekCnt = CSVFilesInDirCount(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM);
   for (int i = 1; i <= weekCnt; i++) {
     vector<vector<string>> weekContent;
-    << DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM + WEEK_FILE_TEMP +
-            NAME_DELIM + to_string(i) + CSV_EXT
-    << endl;
     weekContent = readCSV(DATA_DIR + DIR_DELIM + WEEK_DIR + DIR_DELIM +
                           WEEK_FILE_TEMP + NAME_DELIM + to_string(i) + CSV_EXT);
     Week *week = new Week();
