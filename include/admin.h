@@ -6,6 +6,7 @@
 class Admin : public Account {
 public:
   Admin(string _name, string _pass);
+  Admin();
   virtual ~Admin();
   bool isAdmin() { return true; }
 };

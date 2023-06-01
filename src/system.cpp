@@ -119,7 +119,10 @@ Player *System::findPlayerByName(string name) {
   throw logic_error(NOT_FOUND_MSG);
 }
 
-System::System() { curWeekNum = 0; }
+System::System() {
+  curWeekNum = 0;
+  admin = Admin(DEF_ADMIN_USER, DEF_ADMIN_PASS);
+}
 
 System::~System() {
   for (auto rt : leagueTeams) {
@@ -288,4 +291,15 @@ string System::logIn(string _name, string _password) {
     return OK_STR + "\n";
   }
   throw logic_error(PERMISSION_DENIED_ERR);
+}
+
+string System::registerAdmin(string _name, string _password) {
+  if (admin.getName() != _name) {
+    throw logic_error(BAD_REQUEST_ERR);
+  }
+  if (admin.authenticate(_password)) {
+    curAccount = &admin;
+    return OK_STR + "\n";
+  }
+  throw logic_error(BAD_REQUEST_ERR);
 }

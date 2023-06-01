@@ -1,6 +1,7 @@
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#include "admin.h"
 #include "general.h"
 #include "io.h"
 #include "player.h"
@@ -33,12 +34,14 @@ public:
   string matchesResult(int weekNum);
   string signUp(string _name, string _password);
   string logIn(string _name, string _password);
+  string registerAdmin(string _name, string _password);
   User *findUserByName(string name);
   inline int getCurWeekNum() { return curWeekNum; }
 
 private:
   int curWeekNum;
   Account *curAccount;
+  Admin admin;
   vector<RealTeam *> leagueTeams;
   vector<Player *> players;
   vector<Week *> weeks;
