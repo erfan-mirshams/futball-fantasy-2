@@ -131,6 +131,9 @@ System::~System() {
   for (auto w : weeks) {
     delete w;
   }
+  for (auto u : users) {
+    delete u;
+  }
 }
 
 StandingEntry System::calculateTeamStandingEntry(RealTeam *rt, int weekNum) {
@@ -255,4 +258,21 @@ string System::matchesResult(int weekNum) {
        << g->team[1]->getName() << " " << g->result[1] << endl;
   }
   return os.str();
+}
+
+User *System::findUserByName(string name) {
+  for (auto u : users) {
+    if (u->getName() == name) {
+      return u;
+    }
+  }
+  return nullptr;
+}
+
+string System::signUp(string _name, string _password) {
+  if (findUserByName(_name) != nullptr) {
+    throw logic_error(BAD_REQUEST_ERR);
+  }
+  users.push_back(new User(_name, _password));
+  return OK_STR + "\n";
 }

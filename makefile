@@ -3,7 +3,7 @@
 #
 # @file
 # @version 0.1
-CFLAGS = -c -std=c++11 -Wall -Wextra
+CFLAGS = -c -std=c++11 -Wall -Wextra -fsanitize=address -fsanitize=undefined -fsanitize=leak
 LFLAGS = -std=c++11 -Wall -Wextra -fsanitize=address -fsanitize=undefined -fsanitize=leak
 
 SRC_DIR = src

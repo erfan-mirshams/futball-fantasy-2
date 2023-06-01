@@ -7,6 +7,7 @@ class Account {
 public:
   Account(string _name, string _pass);
   bool authenticate(string _pass);
+  virtual inline string getName() { return name; }
   virtual ~Account();
 
 protected:

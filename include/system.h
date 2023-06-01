@@ -5,6 +5,7 @@
 #include "io.h"
 #include "player.h"
 #include "real_team.h"
+#include "user.h"
 #include "week.h"
 
 const string PREMIER_LEAGUE_FILE = "premier_league.csv";
@@ -30,6 +31,8 @@ public:
   string leagueStandings();
   string teamOfTheWeek(int weekNum);
   string matchesResult(int weekNum);
+  string signUp(string _name, string _password);
+  User *findUserByName(string name);
   inline int getCurWeekNum() { return curWeekNum; }
 
 private:
@@ -37,6 +40,7 @@ private:
   vector<RealTeam *> leagueTeams;
   vector<Player *> players;
   vector<Week *> weeks;
+  vector<User *> users;
 };
 
 #endif // SYSTEM_H_
