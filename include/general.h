@@ -27,6 +27,7 @@ const string DATA_DIR = "data";
 const string DIR_DELIM = "/";
 const string NAME_DELIM = "_";
 const string PERMISSION_DENIED_ERR = "Permission Denied";
+const string BAD_REQUEST_ERR = "Bad Request";
 const string CSV_EXT = ".csv";
 const string WEEK_DIR = "weeks_stats";
 const string NOT_FOUND_MSG = "NOT FOUND";
@@ -35,6 +36,8 @@ const string POST_CMD_STR = "POST";
 const string PUT_CMD_STR = "PUT";
 const string DELETE_CMD_STR = "DELETE";
 const string TEAM_OF_THE_WEEK_CMD = "team_of_the_week";
+const string LEAUGE_STANDINGS_CMD = "league_standings";
+const string MATCHES_RESULT_LEAGUE_CMD = "matches_result_league";
 const string QM = "?";
 
 enum TEAMS_COLUMN {

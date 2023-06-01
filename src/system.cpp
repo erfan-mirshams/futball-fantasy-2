@@ -1,5 +1,4 @@
 #include "../include/system.h"
-#include <sstream>
 
 void System::readPremierLeagueInfo() {
   vector<vector<string>> CSVFileContent =
@@ -242,6 +241,18 @@ string System::teamOfTheWeek(int weekNum) {
   for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
     os << prefixStr[i] << COLON_DELIM << " " << teamOfTheWeek[i]->getName()
        << " | score: " << scoreOfTheWeek[i] << endl;
+  }
+  return os.str();
+}
+
+string System::matchesResult(int weekNum) {
+  if (weekNum >= (int)weeks.size()) {
+    throw logic_error(BAD_REQUEST_ERR);
+  }
+  ostringstream os;
+  for (auto g : weeks[weekNum]->games) {
+    os << g->team[0]->getName() << " " << g->result[0] << " | "
+       << g->team[1]->getName() << " " << g->result[1] << endl;
   }
   return os.str();
 }

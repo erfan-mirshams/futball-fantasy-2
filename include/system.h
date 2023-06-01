@@ -9,9 +9,8 @@
 
 const string PREMIER_LEAGUE_FILE = "premier_league.csv";
 const string WEEK_FILE_TEMP = "week";
-const Role FANTASY_ROLES[FANTASY_TEAM_SIZE] = {GOAL_KEEPER, DEFENDER, DEFENDER, MIDFIELDER, FORWARD};
 
-struct StandingEntry{
+struct StandingEntry {
   string teamName;
   int score;
   int gf;
@@ -26,10 +25,13 @@ public:
   virtual ~System();
   RealTeam *findTeamByName(string name);
   Player *findPlayerByName(string name);
-  StandingEntry calculateTeamStandingEntry(RealTeam* rt, int weekNum);
+  StandingEntry calculateTeamStandingEntry(RealTeam *rt, int weekNum);
   int whoWon(int weekNum, int gameInd);
   string leagueStandings();
   string teamOfTheWeek(int weekNum);
+  string matchesResult(int weekNum);
+  inline int getCurWeekNum() { return curWeekNum; }
+
 private:
   int curWeekNum;
   vector<RealTeam *> leagueTeams;
