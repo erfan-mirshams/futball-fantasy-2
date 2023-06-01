@@ -383,3 +383,29 @@ string System::passWeek() {
   curWeekNum++;
   return OK_STR + "\n";
 }
+
+string System::getSquad() {
+  verifyUser();
+  return getSquad(dynamic_cast<User *>(curAccount)->getName());
+}
+
+string System::getSquad(string userName) {
+  User *u = findUserByName(userName);
+  if (u == nullptr) {
+    throw logic_error(NOT_FOUND_MSG);
+  }
+  if (!(u->hasCompleteTeam())) {
+    throw logic_error(EMPTY_ERR);
+  }
+  u->sortPlayers();
+  const string outputPrefix[FANTASY_TEAM_SIZE] = {
+      "Goalkeeper", "Defender1", "Defender2", "Midfielder", "Striker"};
+  ostringstream os;
+  os << "fantasy_team" << COLON_DELIM << " " << u->getName() << endl;
+  for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
+    os << outputPrefix[i] << COLON_DELIM << " "
+       << u->getPlayerByIndex(i)->getName() << endl;
+  }
+  os << "Total points" << COLON_DELIM << " " << u->getPoint() << endl;
+  return os.str();
+}

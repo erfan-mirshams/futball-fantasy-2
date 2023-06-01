@@ -20,6 +20,12 @@ string handleGetCommand(System &sys, vector<string> vecStr) {
   if (vecStr[0] == LEAUGE_STANDINGS_CMD) {
     return sys.leagueStandings();
   }
+  if (vecStr[0] == SQUAD_CMD) {
+    if (vecStr.size() > 1) {
+      return sys.getSquad(vecStr[3]);
+    }
+    return sys.getSquad();
+  }
   throw logic_error(NOT_FOUND_MSG);
 }
 

@@ -27,6 +27,7 @@ const string DATA_DIR = "data";
 const string DIR_DELIM = "/";
 const string NAME_DELIM = "_";
 const string PERMISSION_DENIED_ERR = "Permission Denied";
+const string EMPTY_ERR = "Empty";
 const string BAD_REQUEST_ERR = "Bad Request";
 const string CSV_EXT = ".csv";
 const string WEEK_DIR = "weeks_stats";
@@ -50,6 +51,7 @@ const string OPEN_TRANSFER_CMD = "open_transfer_window";
 const string SELL_PLAYER_CMD = "sell_player";
 const string BUY_PLAYER_CMD = "buy_player";
 const string PASS_WEEK_CMD = "pass_week";
+const string SQUAD_CMD = "squad";
 const string NOT_AVAILABLE_PLAYER_ERR =
     "This player is not available for next week";
 const string QM = "?";

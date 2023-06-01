@@ -45,6 +45,8 @@ public:
   string sellPlayer(string _name);
   string buyPlayer(string _name);
   string passWeek();
+  string getSquad();
+  string getSquad(string userName);
 
 private:
   int curWeekNum;

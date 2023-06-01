@@ -17,6 +17,9 @@ public:
   int findPlayerId(Player *p);
   void buyPlayer(Player *p);
   void addPoints(Week *w);
+  void sortPlayers();
+  inline Player *getPlayerByIndex(int ind) { return fantasyTeam[ind]; }
+  inline double getPoint() { return point; }
 
 private:
   Player *fantasyTeam[FANTASY_TEAM_SIZE];

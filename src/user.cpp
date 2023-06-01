@@ -79,3 +79,16 @@ void User::addPoints(Week *w) {
     }
   }
 }
+
+bool playerCmp(Player *a, Player *b) { return (a->getName()) < (b->getName()); }
+
+void User::sortPlayers() {
+  int pre, ind;
+  for (pre = ind = 0; ind < FANTASY_TEAM_SIZE; ind++) {
+    if (fantasyTeam[ind]->getRole() != fantasyTeam[pre]->getRole()) {
+      sort(fantasyTeam + pre, fantasyTeam + ind, playerCmp);
+      pre = ind;
+    }
+  }
+  sort(fantasyTeam + pre, fantasyTeam + ind, playerCmp);
+}
