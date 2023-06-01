@@ -36,6 +36,12 @@ string handlePostCommand(System &sys, vector<string> vecStr) {
   if (vecStr[0] == LOGOUT_CMD) {
     return sys.logOut();
   }
+  if (vecStr[0] == CLOSE_TRANSFER_CMD) {
+    return sys.closeTransferWindow();
+  }
+  if (vecStr[0] == OPEN_TRANSFER_CMD) {
+    return sys.openTransferWindow();
+  }
   throw logic_error(NOT_FOUND_MSG);
 }
 

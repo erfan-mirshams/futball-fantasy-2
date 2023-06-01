@@ -38,11 +38,15 @@ public:
   User *findUserByName(string name);
   inline int getCurWeekNum() { return curWeekNum; }
   string logOut();
+  void verifyAdmin();
+  string openTransferWindow();
+  string closeTransferWindow();
 
 private:
   int curWeekNum;
   Account *curAccount;
   Admin admin;
+  bool isTransferWindowOpen;
   vector<RealTeam *> leagueTeams;
   vector<Player *> players;
   vector<Week *> weeks;

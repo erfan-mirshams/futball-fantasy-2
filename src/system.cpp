@@ -121,6 +121,7 @@ Player *System::findPlayerByName(string name) {
 
 System::System() {
   logOut();
+  isTransferWindowOpen = false;
   curWeekNum = 0;
   admin = Admin(DEF_ADMIN_USER, DEF_ADMIN_PASS);
 }
@@ -307,5 +308,23 @@ string System::registerAdmin(string _name, string _password) {
 
 string System::logOut() {
   curAccount = nullptr;
+  return OK_STR + "\n";
+}
+
+void System::verifyAdmin() {
+  if (curAccount == nullptr || !(curAccount->isAdmin())) {
+    throw logic_error(PERMISSION_DENIED_ERR);
+  }
+}
+
+string System::openTransferWindow() {
+  verifyAdmin();
+  isTransferWindowOpen = true;
+  return OK_STR + "\n";
+}
+
+string System::closeTransferWindow() {
+  verifyAdmin();
+  isTransferWindowOpen = false;
   return OK_STR + "\n";
 }
