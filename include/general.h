@@ -1,6 +1,7 @@
 #ifndef GENERAL_H_
 #define GENERAL_H_
 
+#include <algorithm>
 #include <cstring>
 #include <dirent.h>
 #include <fstream>
@@ -10,9 +11,8 @@
 #include <sstream>
 #include <stdexcept>
 #include <string>
-#include <vector>
 #include <utility>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -53,5 +53,8 @@ enum WEEKS_COLUMN {
   WEEK_SCORES
 };
 
+enum Role { GOAL_KEEPER, DEFENDER, MIDFIELDER, FORWARD };
+const Role FANTASY_ROLES[FANTASY_TEAM_SIZE] = {GOAL_KEEPER, DEFENDER, DEFENDER,
+                                               MIDFIELDER, FORWARD};
 bool contains(string s, string t);
 #endif // GENERAL_H_

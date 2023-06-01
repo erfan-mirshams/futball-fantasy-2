@@ -3,14 +3,13 @@
 
 #include "general.h"
 
-enum Role { GOAL_KEEPER, DEFENDER, MIDFIELDER, FORWARD };
-
 class Player {
 public:
   Player(string _name, Role _role);
   virtual ~Player();
   inline string getName() { return name; }
-  inline Role getRole() {return role;}
+  inline Role getRole() { return role; }
+
 private:
   string name;
   Role role;

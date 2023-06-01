@@ -2,6 +2,7 @@
 #define USER_H_
 
 #include "account.h"
+#include "general.h"
 #include "player.h"
 
 class User : public Account {
@@ -10,10 +11,7 @@ public:
   virtual ~User();
 
 private:
-  Player *goalKeeper;
-  Player *defenders[DEFENDER_CAP];
-  Player *midfielder;
-  Player *forward;
+  Player *fantasyTeam[FANTASY_TEAM_SIZE];
 };
 
 #endif // USER_H_
