@@ -104,7 +104,6 @@ RealTeam *System::findTeamByName(string name) {
 }
 
 string System::stringifyTeamPlayers(string teamName){
-    cout << teamName << endl;
     return findTeamByName(teamName)->stringify();
 }
 
