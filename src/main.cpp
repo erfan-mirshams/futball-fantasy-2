@@ -80,13 +80,22 @@ string handleCommand(System &sys, vector<string> vecStr) {
   throw logic_error(NOT_FOUND_MSG);
 }
 
+void handleInput(System &sys){
+  string CMDLine;
+  while (getline(cin, CMDLine)) {
+    try{
+        cout << handleCommand(sys, splitIntoWords(CMDLine));
+    }
+    catch(exception &e){
+        cout << e.what() << endl;
+    }
+  }
+}
+
 int main() {
   System sys;
   sys.readPremierLeagueInfo();
   sys.readWeeksInfo();
-  string CMDLine;
-  while (getline(cin, CMDLine)) {
-    cout << handleCommand(sys, splitIntoWords(CMDLine));
-  }
+  handleInput(sys);
   return 0;
 }
