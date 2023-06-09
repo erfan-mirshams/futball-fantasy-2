@@ -13,7 +13,7 @@ string RealTeam::stringify(){
         Player* p = players[i];
         res << (i + 1) << ". name: " << p->getName()
             << ROW_DELIM << "role: " << p->getRole()
-            << ROW_DELIM << "score: " << p->getScore() << endl;
+            << ROW_DELIM << "score: " << fixed << setprecision(1) << p->getScore() << endl;
     }
     return res.str();
 }
