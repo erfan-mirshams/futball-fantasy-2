@@ -13,12 +13,17 @@ public:
   inline string getName() { return name; }
   inline Role getRole() { return role; }
   inline bool isSuspended() { return suspendedWeeks; }
+  double getScore(){return ((scoredWeeksCnt) ? scoreSum/scoredWeeksCnt : 0);}
   void redCardPenalty();
   void yellowCardPenalty();
   inline void injuryPenalty() { suspendedWeeks = INJURY_SUSPENSION; }
-  inline void passWeekUpdate() {
+  inline void passWeekUpdate(double score) {
     suspendedWeeks--;
     suspendedWeeks = max(suspendedWeeks, 0);
+    if(score > 0){
+        scoredWeeksCnt++;
+        scoreSum += score;
+    }   
   }
 
 private:
@@ -26,6 +31,8 @@ private:
   Role role;
   int yellowCardCnt;
   int suspendedWeeks;
+  double scoreSum = 0;
+  int scoredWeeksCnt = 0;
 };
 
 #endif // PLAYER_H_

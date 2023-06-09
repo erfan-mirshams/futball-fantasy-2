@@ -361,7 +361,7 @@ string System::passWeek() {
     u->addPoints(weeks[curWeekNum]);
   }
   for (auto p : players) {
-    p->passWeekUpdate();
+    p->passWeekUpdate(weeks[curWeekNum]->getScore(p));
   }
   for (auto x : (weeks[curWeekNum]->injured)) {
     if (x.second) {
