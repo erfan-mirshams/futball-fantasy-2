@@ -15,16 +15,16 @@ void System::readPremierLeagueInfo() {
       if (j == TEAM_GOAL_KEEPER) {
         r = GOAL_KEEPER;
       }
-      if (j == TEAM_DEFENDER) {
+      else if (j == TEAM_DEFENDER) {
         r = DEFENDER;
       }
-      if (j == TEAM_MIDFIELDER) {
+      else if (j == TEAM_MIDFIELDER) {
         r = MIDFIELDER;
       }
-      if (j == TEAM_FORWARD) {
+      else if (j == TEAM_FORWARD) {
         r = FORWARD;
       }
-      for (size_t k = 0; k < playerStr.size(); k++) {
+      for (size_t k = 0; j && k < playerStr.size(); k++) {
         p = new Player(playerStr[k], r);
         players.push_back(p);
         rt->pushPlayer(p);
@@ -226,6 +226,9 @@ string System::leagueStandings() {
 string System::teamOfTheWeek(int weekNum) {
   Player *teamOfTheWeek[FANTASY_TEAM_SIZE];
   double scoreOfTheWeek[FANTASY_TEAM_SIZE];
+  if(weekNum >= (int)weeks.size()){
+    throw logic_error(BAD_REQUEST_ERR);
+  }
   for (auto p : players) {
     double score = weeks[weekNum]->playerScore[p];
     for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
