@@ -278,6 +278,9 @@ string System::signUp(string _name, string _password) {
   if (findUserByName(_name) != nullptr) {
     throw logic_error(BAD_REQUEST_ERR);
   }
+  if(curAccount != nullptr){
+    throw logic_error(BAD_REQUEST_ERR);
+  } 
   users.push_back(new User(_name, _password));
   logIn(_name, _password);
   return OK_STR + "\n";
@@ -307,6 +310,9 @@ string System::registerAdmin(string _name, string _password) {
 }
 
 string System::logOut() {
+  if(curAccount == nullptr){
+    throw logic_error(BAD_REQUEST_ERR);
+  } 
   curAccount = nullptr;
   return OK_STR + "\n";
 }
