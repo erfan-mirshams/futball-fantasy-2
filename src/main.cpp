@@ -2,6 +2,15 @@
 #include "../include/io.h"
 #include "../include/system.h"
 
+string replaceDelimWithSpace(string s, char delim = NAME_DELIM[0]){
+    for(int i = 0 ; i < (int)s.size() ; i ++){
+        if(s[i] == delim){
+            s[i] = ' ';
+        }
+    }
+    return s;
+}
+
 string handleGetCommand(System &sys, vector<string> vecStr) {
   if (vecStr[0] == TEAM_OF_THE_WEEK_CMD) {
     int weekNum = sys.getCurWeekNum();
@@ -9,6 +18,9 @@ string handleGetCommand(System &sys, vector<string> vecStr) {
       weekNum = stoi(vecStr[3]) - 1;
     }
     return sys.teamOfTheWeek(weekNum);
+  }
+  if (vecStr[0] == PLAYERS_CMD) {
+    return sys.stringifyTeamPlayers(replaceDelimWithSpace(vecStr[3]));
   }
   if (vecStr[0] == MATCHES_RESULT_LEAGUE_CMD) {
     int weekNum = sys.getCurWeekNum();

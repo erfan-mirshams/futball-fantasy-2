@@ -103,6 +103,11 @@ RealTeam *System::findTeamByName(string name) {
   throw logic_error(NOT_FOUND_MSG);
 }
 
+string System::stringifyTeamPlayers(string teamName){
+    cout << teamName << endl;
+    return findTeamByName(teamName)->stringify();
+}
+
 Player *System::findPlayerByName(string name) {
   for (auto p : players) {
     if (p->getName() == name) {

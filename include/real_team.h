@@ -10,7 +10,7 @@ public:
   void pushPlayer(Player *p);
   virtual ~RealTeam();
   inline string getName() { return name; }
-
+  string stringify();
 private:
   string name;
   vector<Player *> players;

@@ -48,6 +48,7 @@ public:
   string getSquad();
   string getSquad(string userName);
   string usersRanking();
+  string stringifyTeamPlayers(string teamName);
 
 private:
   int curWeekNum;
