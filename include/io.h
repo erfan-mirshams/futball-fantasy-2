@@ -13,5 +13,5 @@ vector<string> splitIntoWords(string str);
 vector<vector<string>> readCSV(string fileName);
 string stitchWordsWithSpace(vector<string> words);
 int CSVFilesInDirCount(string path);
-
+string replaceDelimWithSpace(string s, char delim = NAME_DELIM[0]);
 #endif // IO_H_
