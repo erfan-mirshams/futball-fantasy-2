@@ -11,7 +11,13 @@ string handleGetCommand(System &sys, vector<string> vecStr) {
     return sys.teamOfTheWeek(weekNum);
   }
   if (vecStr[0] == PLAYERS_CMD) {
-    return sys.stringifyTeamPlayers(replaceDelimWithSpace(vecStr[3]));
+    string teamName = vecStr[3];
+    bool sorted = (find(vecStr.begin(), vecStr.end(), RANKS_STR) != vecStr.end());
+    int role = NA;
+    if(vecStr.size() > 4 and vecStr[4] != RANKS_STR){
+        role = sys.findRole(vecStr[4]);
+    }
+    return sys.stringifyTeamPlayers(replaceDelimWithSpace(vecStr[3]), sorted, role);
   }
   if (vecStr[0] == MATCHES_RESULT_LEAGUE_CMD) {
     int weekNum = sys.getCurWeekNum();

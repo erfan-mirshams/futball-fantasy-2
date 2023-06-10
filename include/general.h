@@ -59,6 +59,7 @@ const string NOT_AVAILABLE_PLAYER_ERR =
     "This player is not available for next week";
 const string USERS_RANKING_CMD = "users_ranking";
 const string QM = "?";
+const string RANKS_STR = "ranks";
 
 enum TEAMS_COLUMN {
   TEAM_NAME,

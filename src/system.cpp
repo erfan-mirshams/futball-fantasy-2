@@ -103,8 +103,20 @@ RealTeam *System::findTeamByName(string name) {
   throw logic_error(NOT_FOUND_MSG);
 }
 
-string System::stringifyTeamPlayers(string teamName){
-    return findTeamByName(teamName)->stringify();
+int System::findRole(string role){
+    if(role == "gk")
+        return GOAL_KEEPER;
+    if(role == "df")
+        return DEFENDER;
+    if(role == "md")
+        return MIDFIELDER;
+    if(role == "fw")
+        return FORWARD;
+    return NA;
+}
+
+string System::stringifyTeamPlayers(string teamName, bool sorted, int role){
+    return findTeamByName(teamName)->stringify(sorted, role);
 }
 
 Player *System::findPlayerByName(string name) {
