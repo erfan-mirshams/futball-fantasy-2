@@ -418,9 +418,9 @@ string System::getSquad(string userName) {
 
 bool userCmp(User *a, User *b) {
   if (a->getPoint() == b->getPoint()) {
-    return a->getName() > b->getName();
+    return a->getName() < b->getName();
   }
-  return a->getPoint() < b->getPoint();
+  return a->getPoint() > b->getPoint();
 }
 
 string System::usersRanking() {
