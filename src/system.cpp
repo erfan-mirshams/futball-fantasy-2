@@ -112,7 +112,7 @@ int System::findRole(string role){
         return MIDFIELDER;
     if(role == "fw")
         return FORWARD;
-    return NA;
+    throw logic_error(BAD_REQUEST_ERR);
 }
 
 string System::stringifyTeamPlayers(string teamName, bool sorted, int role){

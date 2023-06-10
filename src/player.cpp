@@ -7,6 +7,8 @@ Player::Player(string _name, Role _role) {
   suspendedWeeks = 0;
 }
 
+
+
 Player::~Player() {}
 
 void Player::redCardPenalty() {
@@ -26,3 +28,25 @@ void Player::yellowCardPenalty() {
     suspendedWeeks = 1;
   }
 }
+
+void Player::passWeekUpdate(double score) {
+    suspendedWeeks--;
+    suspendedWeeks = max(suspendedWeeks, 0);
+    if(score > 0){
+        scoredWeeksCnt++;
+        scoreSum += score;
+    }   
+}
+
+string Player::getRoleString(){
+    switch(role){
+        case(GOAL_KEEPER):
+            return "gk";
+        case(FORWARD):
+            return "fw";
+        case(MIDFIELDER):
+            return "md";
+        default:
+            return "df";
+    }
+}   

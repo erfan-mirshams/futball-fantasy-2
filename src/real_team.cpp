@@ -43,7 +43,7 @@ string RealTeam::stringify(bool sorted, int role){
     for(int i = 0 ; i < (int) pickedPlayers.size() ; i ++){
         Player* p = pickedPlayers[i];
         res << (i + 1) << ". name: " << p->getName()
-            << ROW_DELIM << "role: " << p->getRole()
+            << ROW_DELIM << "role: " << p->getRoleString()
             << ROW_DELIM << "score: " << fixed << setprecision(1) << p->getScore() << endl;
     }
     return res.str();
