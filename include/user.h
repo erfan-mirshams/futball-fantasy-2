@@ -18,12 +18,15 @@ public:
   void buyPlayer(Player *p);
   void addPoints(Week *w);
   void sortPlayers();
+  void resetSellCnt(){getsSellRestrcition |= hasCompleteTeam(), sellsCnt = 0;}
   inline Player *getPlayerByIndex(int ind) { return fantasyTeam[ind]; }
   inline double getPoint() { return point; }
 
 private:
   Player *fantasyTeam[FANTASY_TEAM_SIZE];
   double point;
+  bool getsSellRestrcition;
+  int sellsCnt;
 };
 
 #endif // USER_H_

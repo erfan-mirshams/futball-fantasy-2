@@ -379,6 +379,7 @@ string System::passWeek() {
   verifyAdmin();
   for (auto u : users) {
     u->addPoints(weeks[curWeekNum]);
+    u->resetSellCnt();
   }
   for (auto p : players) {
     p->passWeekUpdate(weeks[curWeekNum]->getScore(p));

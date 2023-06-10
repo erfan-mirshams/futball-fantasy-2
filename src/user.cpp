@@ -2,6 +2,8 @@
 
 User::User(string _name, string _pass) : Account(_name, _pass) {
   point = 0;
+  sellsCnt = 0;
+  getsSellRestrcition = 0;
   for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
     fantasyTeam[i] = nullptr;
   }
@@ -37,6 +39,10 @@ void User::sellPlayer(Player *p) {
   if (id == NA) {
     throw logic_error(NOT_FOUND_MSG);
   }
+  if(sellsCnt == SELL_CAP and getsSellRestrcition){
+    throw logic_error(PERMISSION_DENIED_ERR);
+  }
+  sellsCnt++;
   fantasyTeam[id] = nullptr;
 }
 

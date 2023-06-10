@@ -20,6 +20,7 @@ using namespace std;
 const int TEAMS_COLUMN_SIZE = 5;
 const int WEEKS_COLUMN_SIZE = 6;
 const int DEFENDER_CAP = 2;
+const int SELL_CAP = 2;
 const int DRAW_SCORE = 1;
 const int WINNING_SCORE = 3;
 const int NA = -1;
