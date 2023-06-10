@@ -56,6 +56,7 @@ string wordFromPosition(string::iterator &it, string::iterator fn) {
 
 vector<string> splitIntoWords(string str) {
   vector<string> elements;
+  if(!str.size())return elements;
   string::iterator it = str.begin();
   while (it != str.end()) {
     elements.push_back(wordFromPosition(it, str.end()));
