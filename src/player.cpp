@@ -1,10 +1,11 @@
 #include "../include/player.h"
 
-Player::Player(string _name, Role _role) {
+Player::Player(string _name, int p, Role _role) {
   name = _name;
   role = _role;
   yellowCardCnt = 0;
   suspendedWeeks = 0;
+  price = p;
 }
 
 Player::~Player() {}

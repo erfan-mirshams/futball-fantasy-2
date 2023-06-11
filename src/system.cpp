@@ -22,7 +22,11 @@ void System::readPremierLeagueInfo() {
         r = FORWARD;
       }
       for (size_t k = 0; j && k < playerStr.size(); k++) {
-        p = new Player(playerStr[k], r);
+        vector<string> playerData = splitString(playerStr[k], COLON_DELIM);
+        string name = playerData[0];
+        playerData.back().pop_back();
+        int price = stoi(playerData.back());
+        p = new Player(name, price, r);
         players.push_back(p);
         rt->pushPlayer(p);
       }

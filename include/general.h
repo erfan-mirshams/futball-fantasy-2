@@ -17,6 +17,7 @@
 
 using namespace std;
 
+const int DEFAULT_BUDGET = 2500;
 const int TEAMS_COLUMN_SIZE = 5;
 const int WEEKS_COLUMN_SIZE = 6;
 const int DEFENDER_CAP = 2;

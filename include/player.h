@@ -8,7 +8,7 @@ const int INJURY_SUSPENSION = 3;
 
 class Player {
 public:
-  Player(string _name, Role _role);
+  Player(string _name, int p, Role _role);
   virtual ~Player();
   inline string getName() { return name; }
   inline Role getRole() { return role; }
@@ -29,6 +29,7 @@ private:
   int suspendedWeeks;
   double scoreSum = 0;
   int scoredWeeksCnt = 0;
+  int price;
 };
 
 #endif // PLAYER_H_
