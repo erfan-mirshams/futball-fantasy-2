@@ -19,11 +19,12 @@ using namespace std;
 
 const int DEFAULT_BUDGET = 2500;
 const int TEAMS_COLUMN_SIZE = 5;
-const int WEEKS_COLUMN_SIZE = 6;
+const int WEEKS_COLUMN_SIZE = 8;
 const int DEFENDER_CAP = 2;
 const int SELL_CAP = 2;
 const int DRAW_SCORE = 1;
 const int WINNING_SCORE = 3;
+const int TEAM_SIZE = 11;
 const int NA = -1;
 const int FANTASY_TEAM_SIZE = 5;
 const string DATA_DIR = "data";

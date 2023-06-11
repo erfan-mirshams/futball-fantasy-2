@@ -95,11 +95,13 @@ void System::readWeeksInfo() {
             }
           }
         }
-        if (k == WEEK_TEAM1){
-
-        }
-        if(k == WEEK_TEAM2){
-
+        if (k == WEEK_TEAM1 or k == WEEK_TEAM2){
+            vector <string> players;
+            players = splitString(weekContent[j][k], FIELD_DELIM);
+            int team = k == WEEK_TEAM2;
+            for(int p = 0 ; p < TEAM_SIZE ; p ++){
+                g->teamPlayers[team][p] = findPlayerByName(players[p]);
+            }
         }
       }
     }

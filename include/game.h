@@ -6,7 +6,6 @@
 #include "real_team.h"
 
 const int TEAMS_PARTICIPATING_IN_GAMES = 2;
-const int TEAM_SIZE = 11;
 
 struct Game {
   RealTeam* team[TEAMS_PARTICIPATING_IN_GAMES];
