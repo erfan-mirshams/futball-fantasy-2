@@ -42,6 +42,7 @@ void User::sellPlayer(Player *p) {
   if (sellsCnt == SELL_CAP and getsSellRestrcition) {
     throw logic_error(PERMISSION_DENIED_ERR);
   }
+  budget += p->getPrice();
   sellsCnt++;
   fantasyTeam[id] = nullptr;
 }
