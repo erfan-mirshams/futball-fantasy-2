@@ -21,7 +21,8 @@ public:
   void yellowCardPenalty();
   inline void injuryPenalty() { suspendedWeeks = INJURY_SUSPENSION; }
   void passWeekUpdate(double score);
-
+  void setTeamName(string s){teamName = s;};
+  string getTeamName(){return teamName;};
 private:
   string name;
   Role role;
@@ -30,6 +31,7 @@ private:
   double scoreSum = 0;
   int scoredWeeksCnt = 0;
   int price;
+  string teamName;
 };
 
 #endif // PLAYER_H_

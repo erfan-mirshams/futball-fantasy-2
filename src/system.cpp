@@ -27,6 +27,7 @@ void System::readPremierLeagueInfo() {
         playerData.back().pop_back();
         int price = stoi(playerData.back());
         p = new Player(name, price, r);
+        p->setTeamName(rt->getName());
         players.push_back(p);
         rt->pushPlayer(p);
       }
@@ -76,18 +77,29 @@ void System::readWeeksInfo() {
             }
           }
         }
-        if (k == WEEK_SCORES) {
-          vector<string> scoreInstanceStr;
-          scoreInstanceStr = splitString(weekContent[j][k], FIELD_DELIM);
-          for (auto sis : scoreInstanceStr) {
-            if (contains(sis, string(1, COLON_DELIM))) {
-              vector<string> vec;
-              vec = splitString(sis, COLON_DELIM);
-              week->playerScore[findPlayerByName(vec[0])] = stod(vec[1]);
-            } else {
-              week->playerScore[findPlayerByName(sis)] = 0;
+        if (k == WEEK_GOAL_DATA) {
+          vector<string> goalData;
+          goalData = splitString(weekContent[j][k], FIELD_DELIM);
+          for(string data : goalData){
+            vector<string> parties = splitString(data, COLON_DELIM);
+            if(parties.back() == OWN_GOAL_STR){
+                Player* p = findPlayerByName(parties[0]);
+                g->ownGoals.push_back(p);
+            }
+            else{
+                Player* p1 = findPlayerByName(parties[0]);
+                Player* p2 = findPlayerByName(parties[1]);
+                int team = (p1->getTeamName() == g->team[1]->getName());
+                g->teamGoals[team].push_back(p1);
+                g->assists.push_back(p2);
             }
           }
+        }
+        if (k == WEEK_TEAM1){
+
+        }
+        if(k == WEEK_TEAM2){
+
         }
       }
     }

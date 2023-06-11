@@ -5,6 +5,7 @@
 #include "general.h"
 #include "player.h"
 
+
 struct Week {
   Week();
   virtual ~Week();
@@ -14,10 +15,7 @@ struct Week {
   map<Player *, bool> redCardRecieved;
   map<Player *, double> playerScore;
   double getScore(Player *p) {
-    if (!playerScore.count(p)) {
-      return -1;
-    }
-    return playerScore[p];
+    return 0;
   }
 };
 

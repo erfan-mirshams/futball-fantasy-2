@@ -62,6 +62,7 @@ const string NOT_AVAILABLE_PLAYER_ERR =
 const string USERS_RANKING_CMD = "users_ranking";
 const string QM = "?";
 const string RANKS_STR = "ranks";
+const string OWN_GOAL_STR = "OWN_GOAL";
 
 enum TEAMS_COLUMN {
   TEAM_NAME,
@@ -76,11 +77,26 @@ enum WEEKS_COLUMN {
   WEEK_INJURED,
   WEEK_YELLOW_CARDS,
   WEEK_RED_CARDS,
-  WEEK_SCORES
+  WEEK_GOAL_DATA,
+  WEEK_TEAM1,
+  WEEK_TEAM2
 };
 
 enum Role { GOAL_KEEPER, DEFENDER, MIDFIELDER, FORWARD };
 const Role FANTASY_ROLES[FANTASY_TEAM_SIZE] = {GOAL_KEEPER, DEFENDER, DEFENDER,
                                                MIDFIELDER, FORWARD};
+enum FullRole{
+    GOALER,
+    LEFT_DEFENDER,
+    MID_LEFT_DEFENDER,
+    MID_RIGHT_DEFENDER,
+    RIGHT_DEFENDER,
+    LEFT_MID,
+    MID_MID,
+    RIGHT_MID,
+    LEFT_FORWARD,
+    MID_FORWARD,
+    RIGHT_FORWARD
+};
 bool contains(string s, string t);
 #endif // GENERAL_H_
