@@ -15,7 +15,10 @@ struct Week {
   map<Player *, bool> redCardRecieved;
   map<Player *, double> playerScore;
   double getScore(Player *p) {
-    return 0;
+    if (!playerScore.count(p)) {
+      return -1;
+    }
+    return playerScore[p];
   }
 };
 

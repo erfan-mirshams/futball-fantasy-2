@@ -448,7 +448,8 @@ string System::getSquad(string userName) {
     os << outputPrefix[i] << COLON_DELIM << " "
        << u->getPlayerByIndex(i)->getName() << endl;
   }
-  os << "Total points" << COLON_DELIM << " " << u->getPoint() << endl;
+  os << "Total Points" << COLON_DELIM << " " << u->getPoint() << endl;
+  os << "Team Cost" << COLON_DELIM << " " << DEFAULT_BUDGET - u->getBudget() << endl;
   return os.str();
 }
 
