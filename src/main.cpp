@@ -12,12 +12,14 @@ string handleGetCommand(System &sys, vector<string> vecStr) {
   }
   if (vecStr[0] == PLAYERS_CMD) {
     string teamName = vecStr[3];
-    bool sorted = (find(vecStr.begin(), vecStr.end(), RANKS_STR) != vecStr.end());
+    bool sorted =
+        (find(vecStr.begin(), vecStr.end(), RANKS_STR) != vecStr.end());
     int role = NA;
-    if(vecStr.size() > 4 and vecStr[4] != RANKS_STR){
-        role = sys.findRole(vecStr[4]);
+    if (vecStr.size() > 4 and vecStr[4] != RANKS_STR) {
+      role = sys.findRole(vecStr[4]);
     }
-    return sys.stringifyTeamPlayers(replaceDelimWithSpace(vecStr[3]), sorted, role);
+    return sys.stringifyTeamPlayers(replaceDelimWithSpace(vecStr[3]), sorted,
+                                    role);
   }
   if (vecStr[0] == MATCHES_RESULT_LEAGUE_CMD) {
     int weekNum = sys.getCurWeekNum();
@@ -89,14 +91,13 @@ string handleCommand(System &sys, vector<string> vecStr) {
   throw logic_error(NOT_FOUND_MSG);
 }
 
-void handleInput(System &sys){
+void handleInput(System &sys) {
   string CMDLine;
   while (getline(cin, CMDLine)) {
-    try{
-        cout << handleCommand(sys, splitIntoWords(CMDLine));
-    }
-    catch(exception &e){
-        cout << e.what() << endl;
+    try {
+      cout << handleCommand(sys, splitIntoWords(CMDLine));
+    } catch (exception &e) {
+      cout << e.what() << endl;
     }
   }
 }

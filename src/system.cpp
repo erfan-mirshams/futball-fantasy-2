@@ -14,14 +14,11 @@ void System::readPremierLeagueInfo() {
       Role r;
       if (j == TEAM_GOAL_KEEPER) {
         r = GOAL_KEEPER;
-      }
-      else if (j == TEAM_DEFENDER) {
+      } else if (j == TEAM_DEFENDER) {
         r = DEFENDER;
-      }
-      else if (j == TEAM_MIDFIELDER) {
+      } else if (j == TEAM_MIDFIELDER) {
         r = MIDFIELDER;
-      }
-      else if (j == TEAM_FORWARD) {
+      } else if (j == TEAM_FORWARD) {
         r = FORWARD;
       }
       for (size_t k = 0; j && k < playerStr.size(); k++) {
@@ -103,20 +100,20 @@ RealTeam *System::findTeamByName(string name) {
   throw logic_error(NOT_FOUND_MSG);
 }
 
-int System::findRole(string role){
-    if(role == "gk")
-        return GOAL_KEEPER;
-    if(role == "df")
-        return DEFENDER;
-    if(role == "md")
-        return MIDFIELDER;
-    if(role == "fw")
-        return FORWARD;
-    throw logic_error(BAD_REQUEST_ERR);
+int System::findRole(string role) {
+  if (role == "gk")
+    return GOAL_KEEPER;
+  if (role == "df")
+    return DEFENDER;
+  if (role == "md")
+    return MIDFIELDER;
+  if (role == "fw")
+    return FORWARD;
+  throw logic_error(BAD_REQUEST_ERR);
 }
 
-string System::stringifyTeamPlayers(string teamName, bool sorted, int role){
-    return findTeamByName(teamName)->stringify(sorted, role);
+string System::stringifyTeamPlayers(string teamName, bool sorted, int role) {
+  return findTeamByName(teamName)->stringify(sorted, role);
 }
 
 Player *System::findPlayerByName(string name) {
@@ -237,7 +234,7 @@ string System::leagueStandings() {
 string System::teamOfTheWeek(int weekNum) {
   Player *teamOfTheWeek[FANTASY_TEAM_SIZE];
   double scoreOfTheWeek[FANTASY_TEAM_SIZE];
-  if(weekNum >= (int)weeks.size()){
+  if (weekNum >= (int)weeks.size()) {
     throw logic_error(BAD_REQUEST_ERR);
   }
   for (auto p : players) {
@@ -290,9 +287,9 @@ string System::signUp(string _name, string _password) {
   if (findUserByName(_name) != nullptr) {
     throw logic_error(BAD_REQUEST_ERR);
   }
-  if(curAccount != nullptr){
+  if (curAccount != nullptr) {
     throw logic_error(BAD_REQUEST_ERR);
-  } 
+  }
   users.push_back(new User(_name, _password));
   logIn(_name, _password);
   return OK_STR + "\n";
@@ -322,9 +319,9 @@ string System::registerAdmin(string _name, string _password) {
 }
 
 string System::logOut() {
-  if(curAccount == nullptr){
+  if (curAccount == nullptr) {
     throw logic_error(BAD_REQUEST_ERR);
-  } 
+  }
   curAccount = nullptr;
   return OK_STR + "\n";
 }

@@ -11,6 +11,7 @@ public:
   virtual ~RealTeam();
   inline string getName() { return name; }
   string stringify(bool sorted, int role);
+
 private:
   string name;
   vector<Player *> players;

@@ -56,12 +56,13 @@ string wordFromPosition(string::iterator &it, string::iterator fn) {
 
 vector<string> splitIntoWords(string str) {
   vector<string> elements;
-  if(!str.size())return elements;
+  if (!str.size())
+    return elements;
   string::iterator it = str.begin();
   while (it != str.end()) {
     elements.push_back(wordFromPosition(it, str.end()));
   }
-  if(elements.back().size() == 0){
+  if (elements.back().size() == 0) {
     elements.pop_back();
   }
   return elements;
@@ -90,11 +91,11 @@ string stitchWordsWithSpace(vector<string> words) {
   return res;
 }
 
-string replaceDelimWithSpace(string s, char delim){
-    for(int i = 0 ; i < (int)s.size() ; i ++){
-        if(s[i] == delim){
-            s[i] = ' ';
-        }
+string replaceDelimWithSpace(string s, char delim) {
+  for (int i = 0; i < (int)s.size(); i++) {
+    if (s[i] == delim) {
+      s[i] = ' ';
     }
-    return s;
+  }
+  return s;
 }

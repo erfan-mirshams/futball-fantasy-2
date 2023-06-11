@@ -18,7 +18,9 @@ public:
   void buyPlayer(Player *p);
   void addPoints(Week *w);
   void sortPlayers();
-  void resetSellCnt(){getsSellRestrcition |= hasCompleteTeam(), sellsCnt = 0;}
+  void resetSellCnt() {
+    getsSellRestrcition |= hasCompleteTeam(), sellsCnt = 0;
+  }
   inline Player *getPlayerByIndex(int ind) { return fantasyTeam[ind]; }
   inline double getPoint() { return point; }
 

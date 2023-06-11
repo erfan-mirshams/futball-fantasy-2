@@ -39,7 +39,7 @@ void User::sellPlayer(Player *p) {
   if (id == NA) {
     throw logic_error(NOT_FOUND_MSG);
   }
-  if(sellsCnt == SELL_CAP and getsSellRestrcition){
+  if (sellsCnt == SELL_CAP and getsSellRestrcition) {
     throw logic_error(PERMISSION_DENIED_ERR);
   }
   sellsCnt++;
