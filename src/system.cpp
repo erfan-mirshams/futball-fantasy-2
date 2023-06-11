@@ -446,7 +446,11 @@ string System::getSquad(string userName) {
   os << "fantasy_team" << COLON_DELIM << " " << u->getName() << endl;
   for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
     os << outputPrefix[i] << COLON_DELIM << " "
-       << u->getPlayerByIndex(i)->getName() << endl;
+       << u->getPlayerByIndex(i)->getName();
+    if(u->isCaptain(u->getPlayerByIndex(i))){
+        os << " " << CAPTAIN_STR;
+    }
+    os << endl;
   }
   os << "Total Points" << COLON_DELIM << " " << u->getPoint() << endl;
   os << "Team Cost" << COLON_DELIM << " " << DEFAULT_BUDGET - u->getBudget() << endl;
@@ -469,4 +473,13 @@ string System::usersRanking() {
        << " | point" << COLON_DELIM << " " << u->getPoint() << endl;
   }
   return os.str();
+}
+
+string System::setCaptain(string name){
+    if(curAccount == nullptr or curAccount->isAdmin()){
+        throw logic_error(BAD_REQUEST_ERR);
+    }
+    User *curUser = dynamic_cast<User *>(curAccount);
+    curUser->setCaptain(findPlayerByName(name));
+    return OK_STR + "\n";
 }

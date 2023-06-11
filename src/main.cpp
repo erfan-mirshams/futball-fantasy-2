@@ -76,6 +76,10 @@ string handlePostCommand(System &sys, vector<string> vecStr) {
   if (vecStr[0] == PASS_WEEK_CMD) {
     return sys.passWeek();
   }
+  if (vecStr[0] == SET_CAPTAIN_CMD){
+    vector<string> pName(vecStr.begin() + 3, vecStr.end());
+    return sys.setCaptain(stitchWordsWithSpace(pName));
+  }
   throw logic_error(NOT_FOUND_MSG);
 }
 

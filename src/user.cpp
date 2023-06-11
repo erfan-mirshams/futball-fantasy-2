@@ -34,6 +34,14 @@ int User::findPlayerId(Player *p) {
   return ans;
 }
 
+void User::setCaptain(Player *p){
+  int id = findPlayerId(p);
+  if (id == NA) {
+    throw logic_error(NOT_FOUND_MSG);
+  }
+  captain = fantasyTeam[id];
+}
+
 void User::sellPlayer(Player *p) {
   int id = findPlayerId(p);
   if (id == NA) {
@@ -41,6 +49,9 @@ void User::sellPlayer(Player *p) {
   }
   if (sellsCnt == SELL_CAP and getsSellRestrcition) {
     throw logic_error(PERMISSION_DENIED_ERR);
+  }
+  if(p == captain){
+    captain = nullptr;
   }
   budget += p->getPrice();
   sellsCnt++;
@@ -84,6 +95,9 @@ void User::addPoints(Week *w) {
         break;
       }
       sum += w->playerScore[fantasyTeam[i]];
+      if(fantasyTeam[i] == captain){
+        sum += w->playerScore[fantasyTeam[i]] * CAPTAIN_EXTRA_COEF;
+      }
     }
     if (flag) {
       point += sum;

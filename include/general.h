@@ -27,6 +27,8 @@ const int WINNING_SCORE = 3;
 const int TEAM_SIZE = 11;
 const int NA = -1;
 const int FANTASY_TEAM_SIZE = 5;
+const double CAPTAIN_EXTRA_COEF = 1;
+const string CAPTAIN_STR = "(CAPTAIN)";
 const string DATA_DIR = "data";
 const string DIR_DELIM = "/";
 const string NAME_DELIM = "_";
@@ -58,6 +60,7 @@ const string PLAYERS_CMD = "players";
 const string BUY_PLAYER_CMD = "buy_player";
 const string PASS_WEEK_CMD = "pass_week";
 const string SQUAD_CMD = "squad";
+const string SET_CAPTAIN_CMD = "set_captain";
 const string NOT_AVAILABLE_PLAYER_ERR =
     "This player is not available for next week";
 const string USERS_RANKING_CMD = "users_ranking";
