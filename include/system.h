@@ -50,7 +50,7 @@ public:
   string usersRanking();
   string stringifyTeamPlayers(string teamName, bool sorted, int role);
   int findRole(string role);
-
+  string getBudget();
 private:
   int curWeekNum;
   Account *curAccount;

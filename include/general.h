@@ -64,6 +64,7 @@ const string USERS_RANKING_CMD = "users_ranking";
 const string QM = "?";
 const string RANKS_STR = "ranks";
 const string OWN_GOAL_STR = "OWN_GOAL";
+const string SHOW_BUDGET_CMD = "show_budget";
 
 enum TEAMS_COLUMN {
   TEAM_NAME,

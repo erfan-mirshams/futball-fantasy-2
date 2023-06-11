@@ -23,6 +23,7 @@ public:
   void passWeekUpdate(double score);
   void setTeamName(string s){teamName = s;};
   string getTeamName(){return teamName;};
+  int getPrice(){return price;}
 private:
   string name;
   Role role;

@@ -66,6 +66,10 @@ void User::buyPlayer(Player *p) {
   if (p->isSuspended()) {
     throw logic_error(NOT_AVAILABLE_PLAYER_ERR);
   }
+  if(p->getPrice() > budget){
+    throw logic_error(BAD_REQUEST_ERR);
+  }
+  budget -= p->getPrice();
   fantasyTeam[fer] = p;
 }
 

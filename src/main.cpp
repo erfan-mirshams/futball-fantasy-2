@@ -40,6 +40,9 @@ string handleGetCommand(System &sys, vector<string> vecStr) {
   if (vecStr[0] == USERS_RANKING_CMD) {
     return sys.usersRanking();
   }
+  if(vecStr[0] == SHOW_BUDGET_CMD){
+    return sys.getBudget();
+  }
   throw logic_error(NOT_FOUND_MSG);
 }
 

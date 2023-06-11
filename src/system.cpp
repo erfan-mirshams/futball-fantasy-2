@@ -109,6 +109,14 @@ void System::readWeeksInfo() {
   }
 }
 
+string System::getBudget(){
+  if(curAccount == nullptr || curAccount->isAdmin()){
+    throw logic_error(PERMISSION_DENIED_ERR);
+  }
+  User *curUser = dynamic_cast<User *>(curAccount);
+  return to_string(curUser->getBudget()) + "\n";
+}
+
 RealTeam *System::findTeamByName(string name) {
   for (auto rt : leagueTeams) {
     if (rt->getName() == name) {

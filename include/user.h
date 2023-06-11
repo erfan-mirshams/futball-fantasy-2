@@ -23,12 +23,13 @@ public:
   }
   inline Player *getPlayerByIndex(int ind) { return fantasyTeam[ind]; }
   inline double getPoint() { return point; }
-
+  int getBudget(){return budget;}
 private:
   Player *fantasyTeam[FANTASY_TEAM_SIZE];
   double point;
   bool getsSellRestrcition;
   int sellsCnt;
+  int budget = DEFAULT_BUDGET;
 };
 
 #endif // USER_H_
