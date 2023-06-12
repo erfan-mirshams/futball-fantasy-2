@@ -9,9 +9,6 @@ Week::~Week() {
 }
 
 double Week::getScore(Player *p) {
-  if (!playerRawScore.count(p)) {
-    return -1;
-  }
   return playerRawScore[p];
 }
 

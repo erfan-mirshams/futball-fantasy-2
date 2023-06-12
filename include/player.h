@@ -20,7 +20,7 @@ public:
   void redCardPenalty();
   void yellowCardPenalty();
   inline void injuryPenalty() { suspendedWeeks = INJURY_SUSPENSION; }
-  void passWeekUpdate(double score);
+  void passWeekUpdate();
   void setTeamName(string s) { teamName = s; };
   string getTeamName() { return teamName; };
   int getPrice() { return price; }
@@ -31,7 +31,7 @@ public:
   int getGoal() { return goals; }
   int getAssist() { return assists; }
   int getCleanSheet() { return cleanSheets; }
-
+  void addRawScore(double score);
 private:
   string name;
   Role role;

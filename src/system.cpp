@@ -407,7 +407,9 @@ string System::passWeek() {
     u->resetSellCnt();
   }
   for (auto p : players) {
-    p->passWeekUpdate(weeks[curWeekNum]->getScore(p));
+    p->passWeekUpdate();
+    if(weeks[curWeekNum]->playerRawScore.count(p))
+        p->addRawScore(weeks[curWeekNum]->getScore(p));
   }
   for (auto x : (weeks[curWeekNum]->injured)) {
     if (x.second) {

@@ -28,13 +28,14 @@ void Player::yellowCardPenalty() {
   }
 }
 
-void Player::passWeekUpdate(double score) {
+void Player::passWeekUpdate() {
   suspendedWeeks--;
   suspendedWeeks = max(suspendedWeeks, 0);
-  if (score > 0) {
+}
+
+void Player::addRawScore(double score){
     scoredWeeksCnt++;
-    scoreSum += score;
-  }
+    scoreSum += calcScore(score, 0);
 }
 
 double Player::calcScore(double x, bool is_cap) {
