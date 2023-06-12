@@ -33,9 +33,9 @@ void Player::passWeekUpdate() {
   suspendedWeeks = max(suspendedWeeks, 0);
 }
 
-void Player::addRawScore(double score){
-    scoredWeeksCnt++;
-    scoreSum += calcScore(score, 0);
+void Player::addRawScore(double score) {
+  scoredWeeksCnt++;
+  scoreSum += calcScore(score, 0);
 }
 
 double Player::calcScore(double x, bool is_cap) {

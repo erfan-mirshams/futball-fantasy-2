@@ -408,8 +408,8 @@ string System::passWeek() {
   }
   for (auto p : players) {
     p->passWeekUpdate();
-    if(weeks[curWeekNum]->playerRawScore.count(p))
-        p->addRawScore(weeks[curWeekNum]->getScore(p));
+    if (weeks[curWeekNum]->playerRawScore.count(p))
+      p->addRawScore(weeks[curWeekNum]->getScore(p));
   }
   for (auto x : (weeks[curWeekNum]->injured)) {
     if (x.second) {

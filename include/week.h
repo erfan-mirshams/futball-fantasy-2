@@ -21,12 +21,12 @@ private:
   map<Player *, int> goals;
   map<Player *, int> assists;
   map<Player *, int> cleanSheets;
-  void proccessGoalDetails(Game* g);
-  void proccessResult(Game* g);
-  void initializeScores(Player** p);
-  void proccessDefenders(Game* g);
-  void proccessMids(Game* g);
-  void proccessForwards(Game* g);
+  void proccessGoalDetails(Game *g);
+  void proccessResult(Game *g);
+  void initializeScores(Player **p);
+  void proccessDefenders(Game *g);
+  void proccessMids(Game *g);
+  void proccessForwards(Game *g);
 };
 
 #endif // WEEK_H_

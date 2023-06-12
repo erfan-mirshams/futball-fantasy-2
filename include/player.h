@@ -32,6 +32,7 @@ public:
   int getAssist() { return assists; }
   int getCleanSheet() { return cleanSheets; }
   void addRawScore(double score);
+
 private:
   string name;
   Role role;
