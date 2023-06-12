@@ -58,6 +58,20 @@ void Week::proccessDefenders(Game* g){
       for (auto p : g->teamGoals[i])
         if(p->getRole() == DEFENDER)
             mp[p] += 4;
+      for (auto p : g->teamGoals[!i])
+        if(p == g->teamPlayers[!i][RIGHT_FORWARD] or 
+           p == g->teamPlayers[!i][RIGHT_DEFENDER])
+            mp[g->teamPlayers[i][LEFT_DEFENDER]] -= 1;
+      for (auto p : g->teamGoals[!i])
+        if(p == g->teamPlayers[!i][LEFT_FORWARD] or 
+           p == g->teamPlayers[!i][LEFT_DEFENDER])
+            mp[g->teamPlayers[i][RIGHT_DEFENDER]] -= 1;
+      for (auto p : g->teamGoals[!i])
+        if(p == g->teamPlayers[!i][MID_FORWARD] or 
+           p == g->teamPlayers[!i][MID_LEFT_DEFENDER] or
+           p == g->teamPlayers[!i][MID_RIGHT_DEFENDER])
+            mp[g->teamPlayers[i][MID_RIGHT_DEFENDER]] -= 1,
+            mp[g->teamPlayers[i][MID_LEFT_DEFENDER]] -= 1;
     }
     for (auto p : g->assists)
         if(p->getRole() == DEFENDER)
@@ -70,9 +84,13 @@ void Week::proccessMids(Game* g){
       if (!g->result[!i])
         for (auto p : g->teamPlayers[i])if(p->getRole() == MIDFIELDER)
           mp[p] += 1;
-      for (auto p : g->teamGoals[i])
-        if(p->getRole() == MIDFIELDER)
+      for (auto p : g->teamGoals[i]){
+        if(p->getRole() == MIDFIELDER){
             mp[p] += 3;
+            for(size_t j = LEFT_MID ; j <= RIGHT_MID ; j ++)
+                mp[g->teamPlayers[!i][j]] -= 1;
+        }
+      }
     }
     for (auto p : g->assists)
         if(p->getRole() == MIDFIELDER)
