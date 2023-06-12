@@ -65,11 +65,32 @@ void Week::proccessDefenders(Game* g){
 }
 
 void Week::proccessMids(Game* g){
-
+    auto &mp = playerRawScore;
+    for (int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++){
+      if (!g->result[!i])
+        for (auto p : g->teamPlayers[i])if(p->getRole() == MIDFIELDER)
+          mp[p] += 1;
+      for (auto p : g->teamGoals[i])
+        if(p->getRole() == MIDFIELDER)
+            mp[p] += 3;
+    }
+    for (auto p : g->assists)
+        if(p->getRole() == MIDFIELDER)
+            mp[p] += 2;
 }
 
 void Week::proccessForwards(Game* g){
-
+    auto &mp = playerRawScore;
+    for (int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++){
+      for (auto p : g->teamGoals[i])
+        if(p->getRole() == FORWARD)
+            mp[p] += 3;
+      for (auto p : g->teamPlayers[i])if(p->getRole() == FORWARD and !goals.count(p))
+        mp[p] -= 1;
+    }
+    for (auto p : g->assists)
+        if(p->getRole() == FORWARD)
+            mp[p] += 1;
 }
 
 void Week::initializeScores(Player** p){
