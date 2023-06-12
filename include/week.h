@@ -24,6 +24,9 @@ private:
   void proccessGoalDetails(Game* g);
   void proccessResult(Game* g);
   void initializeScores(Player** p);
+  void proccessDefenders(Game* g);
+  void proccessMids(Game* g);
+  void proccessForwards(Game* g);
 };
 
 #endif // WEEK_H_

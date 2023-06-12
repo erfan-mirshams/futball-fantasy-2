@@ -49,6 +49,29 @@ void Week::proccessResult(Game* g){
     }
 }
 
+void Week::proccessDefenders(Game* g){
+    auto &mp = playerRawScore;
+    for (int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++){
+      if (!g->result[!i])
+        for (auto p : g->teamPlayers[i])if(p->getRole() == DEFENDER)
+          mp[p] += 2;
+      for (auto p : g->teamGoals[i])
+        if(p->getRole() == DEFENDER)
+            mp[p] += 4;
+    }
+    for (auto p : g->assists)
+        if(p->getRole() == DEFENDER)
+            mp[p] += 3;
+}
+
+void Week::proccessMids(Game* g){
+
+}
+
+void Week::proccessForwards(Game* g){
+
+}
+
 void Week::initializeScores(Player** p){
     auto &mp = playerRawScore;
     mp[p[GOALER]] = 3;
@@ -62,5 +85,8 @@ void Week::proccess() {
         initializeScores(g->teamPlayers[i]);
     proccessGoalDetails(g);
     proccessResult(g);
+    proccessDefenders(g);
+    proccessMids(g);
+    proccessForwards(g);
   }
 }
