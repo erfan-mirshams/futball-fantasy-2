@@ -24,6 +24,7 @@ public:
   void setTeamName(string s){teamName = s;};
   string getTeamName(){return teamName;};
   int getPrice(){return price;}
+  double calcScore(double x, bool is_cap);
 private:
   string name;
   Role role;

@@ -90,13 +90,16 @@ void User::addPoints(Week *w) {
   bool flag = true;
   if (hasCompleteTeam()) {
     for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
-      if (fantasyTeam[i]->isSuspended()) {
+      Player* p = fantasyTeam[i];
+      if (p->isSuspended()) {
         flag = false;
         break;
       }
-      sum += w->playerScore[fantasyTeam[i]];
-      if(fantasyTeam[i] == captain){
-        sum += w->playerScore[fantasyTeam[i]] * CAPTAIN_EXTRA_COEF;
+      if(p == captain){
+        sum += p->calcScore(w->playerScore[p], 1);
+      }
+      else{
+        sum += p->calcScore(w->playerScore[p], 0);
       }
     }
     if (flag) {

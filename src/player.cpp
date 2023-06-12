@@ -37,6 +37,13 @@ void Player::passWeekUpdate(double score) {
   }
 }
 
+double Player::calcScore(double x, bool is_cap){
+    if(is_cap){
+        x *= CAPTAIN_COEF;
+    }
+    return 10/(1 + pow(exp(1), -x/6));
+}
+
 string Player::getRoleString() {
   switch (role) {
   case (GOAL_KEEPER):

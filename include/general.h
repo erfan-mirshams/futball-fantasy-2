@@ -14,6 +14,7 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <math.h>
 
 using namespace std;
 
@@ -27,7 +28,7 @@ const int WINNING_SCORE = 3;
 const int TEAM_SIZE = 11;
 const int NA = -1;
 const int FANTASY_TEAM_SIZE = 5;
-const double CAPTAIN_EXTRA_COEF = 1;
+const double CAPTAIN_COEF = 2;
 const string CAPTAIN_STR = "(CAPTAIN)";
 const string DATA_DIR = "data";
 const string DIR_DELIM = "/";
