@@ -6,20 +6,21 @@
 #include "player.h"
 
 
-struct Week {
+class Week {
+public:
   Week();
-  virtual ~Week();
+  ~Week();
   vector<Game *> games;
   map<Player *, bool> injured;
   map<Player *, bool> yellowCardRecieved;
   map<Player *, bool> redCardRecieved;
-  map<Player *, double> playerScore;
-  double getScore(Player *p) {
-    if (!playerScore.count(p)) {
-      return -1;
-    }
-    return playerScore[p];
-  }
+  map<Player *, double> playerRawScore;
+  double getScore(Player *p);
+  void proccess();
+private:
+  map<Player*, int> goals;
+  map<Player*, int> assists;
+  map<Player*, int> cleanSheets;
 };
 
 #endif // WEEK_H_

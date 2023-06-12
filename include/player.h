@@ -25,6 +25,12 @@ public:
   string getTeamName(){return teamName;};
   int getPrice(){return price;}
   double calcScore(double x, bool is_cap);
+  void addGoal(){goals++;}
+  void addAssist(){assists++;}
+  void addCleanSheet(){cleanSheets++;}
+  int getGoal(){return goals;}
+  int getAssist(){return assists;}
+  int getCleanSheet(){return cleanSheets;}
 private:
   string name;
   Role role;
@@ -34,6 +40,9 @@ private:
   int scoredWeeksCnt = 0;
   int price;
   string teamName;
+  int cleanSheets = 0;
+  int goals = 0;
+  int assists = 0;
 };
 
 #endif // PLAYER_H_

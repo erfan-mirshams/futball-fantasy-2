@@ -5,8 +5,6 @@
 #include "player.h"
 #include "real_team.h"
 
-const int TEAMS_PARTICIPATING_IN_GAMES = 2;
-
 struct Game {
   RealTeam* team[TEAMS_PARTICIPATING_IN_GAMES];
   Player* teamPlayers[TEAMS_PARTICIPATING_IN_GAMES][TEAM_SIZE];

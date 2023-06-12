@@ -264,7 +264,8 @@ string System::teamOfTheWeek(int weekNum) {
     throw logic_error(BAD_REQUEST_ERR);
   }
   for (auto p : players) {
-    double score = weeks[weekNum]->playerScore[p];
+    if(weeks[weekNum]->playerRawScore.count(p) == 0)continue;
+    double score = p->calcScore(weeks[weekNum]->playerRawScore[p], 0);
     for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
       if (p->getRole() != FANTASY_ROLES[i]) {
         continue;
@@ -398,15 +399,20 @@ string System::buyPlayer(string _name) {
   return OK_STR + "\n";
 }
 
+void System::handlePlayerUpdates(){
+    weeks[curWeekNum]->proccess();
+    for (auto p : players) {
+        p->passWeekUpdate(weeks[curWeekNum]->getScore(p));
+    }
+}
+
 string System::passWeek() {
   verifyAdmin();
   for (auto u : users) {
     u->addPoints(weeks[curWeekNum]);
     u->resetSellCnt();
   }
-  for (auto p : players) {
-    p->passWeekUpdate(weeks[curWeekNum]->getScore(p));
-  }
+  handlePlayerUpdates();
   for (auto x : (weeks[curWeekNum]->injured)) {
     if (x.second) {
       (x.first)->injuryPenalty();

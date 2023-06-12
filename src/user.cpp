@@ -96,10 +96,10 @@ void User::addPoints(Week *w) {
         break;
       }
       if(p == captain){
-        sum += p->calcScore(w->playerScore[p], 1);
+        sum += p->calcScore(w->playerRawScore[p], 1);
       }
       else{
-        sum += p->calcScore(w->playerScore[p], 0);
+        sum += p->calcScore(w->playerRawScore[p], 0);
       }
     }
     if (flag) {
