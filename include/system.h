@@ -52,7 +52,6 @@ public:
   int findRole(string role);
   string getBudget();
   string setCaptain(string name);
-  void handlePlayerUpdates();
 
 private:
   int curWeekNum;

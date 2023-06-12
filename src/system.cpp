@@ -399,20 +399,16 @@ string System::buyPlayer(string _name) {
   return OK_STR + "\n";
 }
 
-void System::handlePlayerUpdates() {
-  weeks[curWeekNum]->proccess();
-  for (auto p : players) {
-    p->passWeekUpdate(weeks[curWeekNum]->getScore(p));
-  }
-}
-
 string System::passWeek() {
   verifyAdmin();
+  weeks[curWeekNum]->proccess();
   for (auto u : users) {
     u->addPoints(weeks[curWeekNum]);
     u->resetSellCnt();
   }
-  handlePlayerUpdates();
+  for (auto p : players) {
+    p->passWeekUpdate(weeks[curWeekNum]->getScore(p));
+  }
   for (auto x : (weeks[curWeekNum]->injured)) {
     if (x.second) {
       (x.first)->injuryPenalty();
