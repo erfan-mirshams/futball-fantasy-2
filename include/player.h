@@ -21,16 +21,17 @@ public:
   void yellowCardPenalty();
   inline void injuryPenalty() { suspendedWeeks = INJURY_SUSPENSION; }
   void passWeekUpdate(double score);
-  void setTeamName(string s){teamName = s;};
-  string getTeamName(){return teamName;};
-  int getPrice(){return price;}
+  void setTeamName(string s) { teamName = s; };
+  string getTeamName() { return teamName; };
+  int getPrice() { return price; }
   double calcScore(double x, bool is_cap);
-  void addGoal(){goals++;}
-  void addAssist(){assists++;}
-  void addCleanSheet(){cleanSheets++;}
-  int getGoal(){return goals;}
-  int getAssist(){return assists;}
-  int getCleanSheet(){return cleanSheets;}
+  void addGoal() { goals++; }
+  void addAssist() { assists++; }
+  void addCleanSheet() { cleanSheets++; }
+  int getGoal() { return goals; }
+  int getAssist() { return assists; }
+  int getCleanSheet() { return cleanSheets; }
+
 private:
   string name;
   Role role;

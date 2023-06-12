@@ -23,9 +23,10 @@ public:
   }
   inline Player *getPlayerByIndex(int ind) { return fantasyTeam[ind]; }
   inline double getPoint() { return point; }
-  int getBudget(){return budget;}
-  bool isCaptain(Player *p){return p == captain;}
+  int getBudget() { return budget; }
+  bool isCaptain(Player *p) { return p == captain; }
   void setCaptain(Player *p);
+
 private:
   Player *fantasyTeam[FANTASY_TEAM_SIZE];
   Player *captain;

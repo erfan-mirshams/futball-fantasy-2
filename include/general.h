@@ -8,13 +8,13 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
+#include <math.h>
 #include <set>
 #include <sstream>
 #include <stdexcept>
 #include <string>
 #include <utility>
 #include <vector>
-#include <math.h>
 
 using namespace std;
 
@@ -92,18 +92,18 @@ enum WEEKS_COLUMN {
 enum Role { GOAL_KEEPER, DEFENDER, MIDFIELDER, FORWARD };
 const Role FANTASY_ROLES[FANTASY_TEAM_SIZE] = {GOAL_KEEPER, DEFENDER, DEFENDER,
                                                MIDFIELDER, FORWARD};
-enum FullRole{
-    GOALER,
-    LEFT_DEFENDER,
-    MID_LEFT_DEFENDER,
-    MID_RIGHT_DEFENDER,
-    RIGHT_DEFENDER,
-    LEFT_MID,
-    MID_MID,
-    RIGHT_MID,
-    LEFT_FORWARD,
-    MID_FORWARD,
-    RIGHT_FORWARD
+enum FullRole {
+  GOALER,
+  LEFT_DEFENDER,
+  MID_LEFT_DEFENDER,
+  MID_RIGHT_DEFENDER,
+  RIGHT_DEFENDER,
+  LEFT_MID,
+  MID_MID,
+  RIGHT_MID,
+  LEFT_FORWARD,
+  MID_FORWARD,
+  RIGHT_FORWARD
 };
 bool contains(string s, string t);
 #endif // GENERAL_H_

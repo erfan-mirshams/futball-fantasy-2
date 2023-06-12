@@ -53,6 +53,7 @@ public:
   string getBudget();
   string setCaptain(string name);
   void handlePlayerUpdates();
+
 private:
   int curWeekNum;
   Account *curAccount;

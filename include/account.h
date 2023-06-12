@@ -11,6 +11,7 @@ public:
   virtual inline string getName() { return name; }
   virtual ~Account();
   virtual bool isAdmin() = 0;
+
 protected:
   string name;
   string pass;

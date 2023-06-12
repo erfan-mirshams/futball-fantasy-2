@@ -5,7 +5,6 @@
 #include "general.h"
 #include "player.h"
 
-
 class Week {
 public:
   Week();
@@ -17,10 +16,11 @@ public:
   map<Player *, double> playerRawScore;
   double getScore(Player *p);
   void proccess();
+
 private:
-  map<Player*, int> goals;
-  map<Player*, int> assists;
-  map<Player*, int> cleanSheets;
+  map<Player *, int> goals;
+  map<Player *, int> assists;
+  map<Player *, int> cleanSheets;
 };
 
 #endif // WEEK_H_

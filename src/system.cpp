@@ -80,28 +80,27 @@ void System::readWeeksInfo() {
         if (k == WEEK_GOAL_DATA) {
           vector<string> goalData;
           goalData = splitString(weekContent[j][k], FIELD_DELIM);
-          for(string data : goalData){
+          for (string data : goalData) {
             vector<string> parties = splitString(data, COLON_DELIM);
-            if(parties.back() == OWN_GOAL_STR){
-                Player* p = findPlayerByName(parties[0]);
-                g->ownGoals.push_back(p);
-            }
-            else{
-                Player* p1 = findPlayerByName(parties[0]);
-                Player* p2 = findPlayerByName(parties[1]);
-                int team = (p1->getTeamName() == g->team[1]->getName());
-                g->teamGoals[team].push_back(p1);
-                g->assists.push_back(p2);
+            if (parties.back() == OWN_GOAL_STR) {
+              Player *p = findPlayerByName(parties[0]);
+              g->ownGoals.push_back(p);
+            } else {
+              Player *p1 = findPlayerByName(parties[0]);
+              Player *p2 = findPlayerByName(parties[1]);
+              int team = (p1->getTeamName() == g->team[1]->getName());
+              g->teamGoals[team].push_back(p1);
+              g->assists.push_back(p2);
             }
           }
         }
-        if (k == WEEK_TEAM1 or k == WEEK_TEAM2){
-            vector <string> players;
-            players = splitString(weekContent[j][k], FIELD_DELIM);
-            int team = k == WEEK_TEAM2;
-            for(int p = 0 ; p < TEAM_SIZE ; p ++){
-                g->teamPlayers[team][p] = findPlayerByName(players[p]);
-            }
+        if (k == WEEK_TEAM1 or k == WEEK_TEAM2) {
+          vector<string> players;
+          players = splitString(weekContent[j][k], FIELD_DELIM);
+          int team = k == WEEK_TEAM2;
+          for (int p = 0; p < TEAM_SIZE; p++) {
+            g->teamPlayers[team][p] = findPlayerByName(players[p]);
+          }
         }
       }
     }
@@ -109,8 +108,8 @@ void System::readWeeksInfo() {
   }
 }
 
-string System::getBudget(){
-  if(curAccount == nullptr || curAccount->isAdmin()){
+string System::getBudget() {
+  if (curAccount == nullptr || curAccount->isAdmin()) {
     throw logic_error(PERMISSION_DENIED_ERR);
   }
   User *curUser = dynamic_cast<User *>(curAccount);
@@ -264,7 +263,8 @@ string System::teamOfTheWeek(int weekNum) {
     throw logic_error(BAD_REQUEST_ERR);
   }
   for (auto p : players) {
-    if(weeks[weekNum]->playerRawScore.count(p) == 0)continue;
+    if (weeks[weekNum]->playerRawScore.count(p) == 0)
+      continue;
     double score = p->calcScore(weeks[weekNum]->playerRawScore[p], 0);
     for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
       if (p->getRole() != FANTASY_ROLES[i]) {
@@ -399,11 +399,11 @@ string System::buyPlayer(string _name) {
   return OK_STR + "\n";
 }
 
-void System::handlePlayerUpdates(){
-    weeks[curWeekNum]->proccess();
-    for (auto p : players) {
-        p->passWeekUpdate(weeks[curWeekNum]->getScore(p));
-    }
+void System::handlePlayerUpdates() {
+  weeks[curWeekNum]->proccess();
+  for (auto p : players) {
+    p->passWeekUpdate(weeks[curWeekNum]->getScore(p));
+  }
 }
 
 string System::passWeek() {
@@ -453,13 +453,14 @@ string System::getSquad(string userName) {
   for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
     os << outputPrefix[i] << COLON_DELIM << " "
        << u->getPlayerByIndex(i)->getName();
-    if(u->isCaptain(u->getPlayerByIndex(i))){
-        os << " " << CAPTAIN_STR;
+    if (u->isCaptain(u->getPlayerByIndex(i))) {
+      os << " " << CAPTAIN_STR;
     }
     os << endl;
   }
   os << "Total Points" << COLON_DELIM << " " << u->getPoint() << endl;
-  os << "Team Cost" << COLON_DELIM << " " << DEFAULT_BUDGET - u->getBudget() << endl;
+  os << "Team Cost" << COLON_DELIM << " " << DEFAULT_BUDGET - u->getBudget()
+     << endl;
   return os.str();
 }
 
@@ -481,11 +482,11 @@ string System::usersRanking() {
   return os.str();
 }
 
-string System::setCaptain(string name){
-    if(curAccount == nullptr or curAccount->isAdmin()){
-        throw logic_error(BAD_REQUEST_ERR);
-    }
-    User *curUser = dynamic_cast<User *>(curAccount);
-    curUser->setCaptain(findPlayerByName(name));
-    return OK_STR + "\n";
+string System::setCaptain(string name) {
+  if (curAccount == nullptr or curAccount->isAdmin()) {
+    throw logic_error(BAD_REQUEST_ERR);
+  }
+  User *curUser = dynamic_cast<User *>(curAccount);
+  curUser->setCaptain(findPlayerByName(name));
+  return OK_STR + "\n";
 }

@@ -34,7 +34,7 @@ int User::findPlayerId(Player *p) {
   return ans;
 }
 
-void User::setCaptain(Player *p){
+void User::setCaptain(Player *p) {
   int id = findPlayerId(p);
   if (id == NA) {
     throw logic_error(NOT_FOUND_MSG);
@@ -50,7 +50,7 @@ void User::sellPlayer(Player *p) {
   if (sellsCnt == SELL_CAP and getsSellRestrcition) {
     throw logic_error(PERMISSION_DENIED_ERR);
   }
-  if(p == captain){
+  if (p == captain) {
     captain = nullptr;
   }
   budget += p->getPrice();
@@ -78,7 +78,7 @@ void User::buyPlayer(Player *p) {
   if (p->isSuspended()) {
     throw logic_error(NOT_AVAILABLE_PLAYER_ERR);
   }
-  if(p->getPrice() > budget){
+  if (p->getPrice() > budget) {
     throw logic_error(BAD_REQUEST_ERR);
   }
   budget -= p->getPrice();
@@ -90,15 +90,14 @@ void User::addPoints(Week *w) {
   bool flag = true;
   if (hasCompleteTeam()) {
     for (int i = 0; i < FANTASY_TEAM_SIZE; i++) {
-      Player* p = fantasyTeam[i];
+      Player *p = fantasyTeam[i];
       if (p->isSuspended()) {
         flag = false;
         break;
       }
-      if(p == captain){
+      if (p == captain) {
         sum += p->calcScore(w->playerRawScore[p], 1);
-      }
-      else{
+      } else {
         sum += p->calcScore(w->playerRawScore[p], 0);
       }
     }

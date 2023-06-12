@@ -15,23 +15,23 @@ bool scoreSort(Player *a, Player *b) {
   return a->getScore() > b->getScore();
 }
 
-void printDetails(Player* p, stringstream &ss){
-    ss << ROW_DELIM;
-    switch(p->getRole()){
-        case(GOAL_KEEPER):
-            ss << "clean sheets: " << p->getCleanSheet();
-            break;
-        case(FORWARD):
-            ss << "goals: " << p->getGoal() << ROW_DELIM
-            << "assists: " << p->getAssist();
-            break;
-        
-        default:
-            ss << "clean sheets: " << p->getCleanSheet() << ROW_DELIM
-            << "goals: " << p->getGoal() << ROW_DELIM
-            << "assists: " << p->getAssist();
-    }
-    ss << endl;
+void printDetails(Player *p, stringstream &ss) {
+  ss << ROW_DELIM;
+  switch (p->getRole()) {
+  case (GOAL_KEEPER):
+    ss << "clean sheets: " << p->getCleanSheet();
+    break;
+  case (FORWARD):
+    ss << "goals: " << p->getGoal() << ROW_DELIM
+       << "assists: " << p->getAssist();
+    break;
+
+  default:
+    ss << "clean sheets: " << p->getCleanSheet() << ROW_DELIM
+       << "goals: " << p->getGoal() << ROW_DELIM
+       << "assists: " << p->getAssist();
+  }
+  ss << endl;
 }
 
 vector<Player *> RealTeam::findPlayers(bool sorted, int role) {
