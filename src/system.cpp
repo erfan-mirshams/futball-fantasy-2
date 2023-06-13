@@ -151,7 +151,7 @@ Player *System::findPlayerByName(string name) {
 }
 
 System::System() {
-  logOut();
+  curAccount = nullptr;
   isTransferWindowOpen = false;
   curWeekNum = 0;
   admin = Admin(DEF_ADMIN_USER, DEF_ADMIN_PASS);
@@ -346,6 +346,9 @@ string System::registerAdmin(string _name, string _password) {
 }
 
 string System::logOut() {
+  if (curAccount == nullptr) {
+    throw logic_error(BAD_REQUEST_ERR);
+  }
   curAccount = nullptr;
   return OK_STR + "\n";
 }
