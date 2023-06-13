@@ -10,7 +10,7 @@ Week::~Week() {
 
 double Week::getScore(Player *p) { return playerRawScore[p]; }
 
-void Week::proccessGoalDetails(Game *g) {
+void Week::processGoalDetails(Game *g) {
   for (auto p : g->ownGoals)
     playerRawScore[p] -= 3;
   for (auto p : g->teamGoals[0])
@@ -25,7 +25,7 @@ void Week::proccessGoalDetails(Game *g) {
         p->addCleanSheet();
 }
 
-void Week::proccessResult(Game *g) {
+void Week::processResult(Game *g) {
   int score[2] = {0, 0};
   if (g->result[0] == g->result[1]) {
     score[0] = score[1] = 1;
@@ -47,7 +47,7 @@ void Week::proccessResult(Game *g) {
   }
 }
 
-void Week::proccessDefenders(Game *g) {
+void Week::processDefenders(Game *g) {
   auto &mp = playerRawScore;
   for (int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++) {
     if (!g->result[!i])
@@ -97,7 +97,7 @@ void Week::proccessMids(Game *g) {
       mp[p] += 2;
 }
 
-void Week::proccessForwards(Game *g) {
+void Week::processForwards(Game *g) {
   auto &mp = playerRawScore;
   for (int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++) {
     for (auto p : g->teamGoals[i])
@@ -119,14 +119,14 @@ void Week::initializeScores(Player **p) {
     mp[p[i]] = 1;
 }
 
-void Week::proccess() {
+void Week::process() {
   for (auto g : games) {
     for (int i = 0; i < TEAMS_PARTICIPATING_IN_GAMES; i++)
       initializeScores(g->teamPlayers[i]);
-    proccessGoalDetails(g);
-    proccessResult(g);
-    proccessDefenders(g);
+    processGoalDetails(g);
+    processResult(g);
+    processDefenders(g);
     proccessMids(g);
-    proccessForwards(g);
+    processForwards(g);
   }
 }

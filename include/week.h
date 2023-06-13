@@ -15,18 +15,18 @@ public:
   map<Player *, bool> redCardRecieved;
   map<Player *, double> playerRawScore;
   double getScore(Player *p);
-  void proccess();
+  void process();
 
 private:
   map<Player *, int> goals;
   map<Player *, int> assists;
   map<Player *, int> cleanSheets;
-  void proccessGoalDetails(Game *g);
-  void proccessResult(Game *g);
+  void processGoalDetails(Game *g);
+  void processResult(Game *g);
   void initializeScores(Player **p);
-  void proccessDefenders(Game *g);
+  void processDefenders(Game *g);
   void proccessMids(Game *g);
-  void proccessForwards(Game *g);
+  void processForwards(Game *g);
 };
 
 #endif // WEEK_H_

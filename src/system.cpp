@@ -401,7 +401,7 @@ string System::buyPlayer(string _name) {
 
 string System::passWeek() {
   verifyAdmin();
-  weeks[curWeekNum]->proccess();
+  weeks[curWeekNum]->process();
   for (auto u : users) {
     u->addPoints(weeks[curWeekNum]);
     u->resetSellCnt();
