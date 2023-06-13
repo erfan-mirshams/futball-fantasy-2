@@ -346,9 +346,6 @@ string System::registerAdmin(string _name, string _password) {
 }
 
 string System::logOut() {
-  if (curAccount == nullptr) {
-    throw logic_error(BAD_REQUEST_ERR);
-  }
   curAccount = nullptr;
   return OK_STR + "\n";
 }
